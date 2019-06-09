@@ -1,0 +1,88 @@
+[
+	{
+		"name": "技术平台",
+		"excluded": true,
+		"unique": true,
+		"description": "按项目的服务端编程语言",
+		"childList": [
+			{
+				"name": "J2EE"
+			},
+			{
+				"name": "PHP"
+			},
+			{
+				"name": "Python"
+			},
+			{
+				"name": ".NET"
+			},
+			{
+				"name": "NodeJS"
+			}
+		]
+	},
+	{
+		"name": "交易类型",
+		"excluded": true,
+		"unique": true,
+		"childList": [
+			{
+				"name": "资金交易"
+			},
+			{
+				"name": "信息及业务变更类"
+			},
+			{
+				"name": "接口类",
+				"description": "快捷支付及签约"
+			},
+			{
+				"name": "无资金交易",
+				"description": "普通网站"
+			},
+			{
+				"name": "办公运营",
+				"description": "可接触客户数据类交易的工具系统"
+			}
+		]
+	},
+	{
+		"name": "用户类型",
+		"excluded": true,
+		"unique": true,
+		"childList": [
+			{
+				"name": "客户"
+			},
+			{
+				"name": "员工"
+			},
+			{
+				"name": "同业"
+			},
+			{
+				"name": "其他系统"
+			}
+		]
+	},
+	{
+		"name": "项目类型",
+		"excluded": true,
+		"unique": true,
+		"childList": [
+			{
+				"name": "自定义0"
+			},
+			{
+				"name": "自定义1"
+			},
+			{
+				"name": "自定义2"
+			},
+			{
+				"name": "自定义3"
+			}
+		]
+	}
+]

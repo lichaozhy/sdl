@@ -1,0 +1,39 @@
+[
+	{
+		"id": 1,
+		"name": "lichao",
+		"password": "123456",
+		"admininstator": false,
+		"extend": {
+			"realName": "李超",
+			"email": [
+				"lichao@or-change.cn",
+				"1165379610@qq.com"
+			]
+		}
+	},
+	{
+		"id": 2,
+		"name": "tengyue",
+		"password": "1qazxsw2",
+		"admininstator": true,
+		"extend": {
+			"realName": "滕越",
+			"email": [
+				"tengyue@or-change.cn"
+			]
+		}
+	},
+	{
+		"id": 3,
+		"name": "liuqi",
+		"password": "123456",
+		"admininstator": false,
+		"extend": {
+			"realName": "滕越",
+			"email": [
+				"liuqi@or-change.cn"
+			]
+		}
+	}
+]

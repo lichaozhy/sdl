@@ -1,0 +1,50 @@
+{
+  "name": "sdl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config build/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lichaozhy/sdl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lichaozhy/sdl/issues"
+  },
+  "homepage": "https://github.com/lichaozhy/sdl#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "bootstrap-vue": "^2.0.0-rc.22",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "file-loader": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "json-loader": "^0.5.7",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^2.0.0",
+    "vue": "^2.6.10",
+    "vue-i18n": "^8.11.2",
+    "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.6",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.6.0",
+    "webpack-merge": "^4.2.1",
+    "yaml-loader": "^0.5.0"
+  }
+}

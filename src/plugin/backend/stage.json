@@ -1,0 +1,69 @@
+[
+	{
+		"hash": "bad481c5",
+		"typeList": [
+			{
+				"name": "安全需求阶段",
+				"description": "",
+				"extensionList": [
+					{
+						"extension": "oc.checklist.docs"
+					}
+				]
+			},
+			{
+				"name": "安全设计阶段",
+				"description": "",
+				"extensionList": [
+					{
+						"extension": "oc.design.design"
+					},
+					{
+						"extension": "oc.design.audit"
+					},
+					{
+						"extension": "oc.design.confirm"
+					}
+				]
+			},
+			{
+				"name": "安全开发阶段",
+				"description": ""
+			},
+			{
+				"name": "安全测试阶段",
+				"description": "",
+				"extensionList": [
+					{
+						"extension": "apache.sonar.scan"
+					},
+					{
+						"extension": "oc.vulnerability.scan"
+					},
+					{
+						"extension": "ntu.os.scan"
+					}
+				]
+			},
+			{
+				"name": "安全运营阶段",
+				"description": "",
+				"extensionList": [
+					{
+						"extension": "oc.opts"
+					}
+				]
+			}
+		],
+		"constraint": {
+			"init": [1, 0, 0, 0, 0],
+			"base": [
+				[1, 1, 1, 1, 1],
+				[1, 0, 0, 1, 1],
+				[0, 1, 0, 1, 1],
+				[0, 0, 1, 0, 0],
+				[0, 0, 1, 1, 0]
+			]
+		}
+	}
+]
