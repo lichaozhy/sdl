@@ -3,10 +3,10 @@ module.exports = function (api) {
 
 	return {
 		presets: [
-			['@babel/preset-env', {
+			['@babel/env', {
 				loose: true,
 				targets: {
-					browsers: ['ie 6-8']
+					browsers: ['ie 8-11']
 				}
 			}]
 		],

@@ -1,27 +1,36 @@
-import accountData from './account.json';
+import personData from './account.json';
 import categoryData from './category.json';
 import projectData from './project.json';
+import Cookies from 'js-cookie';
 
 export default function install(Vue) {
-	return Vue.prototype.$backend = {
-		signin(username, password) {
+	return Vue.prototype.$backend = Vue.$backend = {
+		async signin(certificate) {
+			const principal = personData.find(person => {
+				return person.name === certificate.username &&
+					person.password === certificate.password;
+			});
 
+			if (!principal) {
+				throw new Error('Sign in fail.');
+			}
+
+			Cookies.set('principalId', principal.id);
+
+			return principal;
 		},
-		signout() {
-
+		async signout() {
+			Cookies.remove('principalId');
 		},
-		account: {
-			setAdministrator(accountId) {
+		principal: {
+			get() {
+				const principalId = Number(Cookies.get('principalId'));
 
-			},
-			update(accountId, options) {
+				if (!principalId) {
+					return null;
+				}
 
-			},
-			create(options) {
-
-			},
-			delete(accountId) {
-
+				return personData.find(person => person.id === principalId) || null;
 			}
 		},
 		project: {

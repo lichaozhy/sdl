@@ -6,18 +6,21 @@ Vue.use(VueRouter);
 import PageSignIn from './component/page/SignIn';
 import PageDesktop from './component/page/Desktop';
 
-import PageDesktopOverview from './component/page/desktop/Overview';
-import PageDesktopAccountProfile from './component/page/desktop/Account';
-import PageDesktopProjectOverview from './component/page/desktop/project/Detail';
+import PageDesktopProfile from './component/page/desktop/Profile';
+import PageDesktopAbout from './component/page/desktop/About';
+
+import PageDesktopProjectOverview from './component/page/desktop/project/Overview';
 import PageDesktopProjectDetail from './component/page/desktop/project/Detail';
 import PageDesktopProjectTeam from './component/page/desktop/project/Team';
 import PageDesktopProjectVersion from './component/page/desktop/project/Version';
+
+import PageDesktopOverview from './component/page/desktop/admin/Overview';
 
 export default new VueRouter({
 	routes: [
 		{
 			path: '/',
-			redirect: 'signin'
+			redirect: '/desktop'
 		},
 		{
 			name: 'signin',
@@ -36,11 +39,15 @@ export default new VueRouter({
 			children: [
 				{
 					path: '',
-					redirect: 'overview'
+					redirect: 'project'
 				},
 				{
-					path: 'account/profile',
-					component: PageDesktopAccountProfile
+					path: 'about',
+					component: PageDesktopAbout
+				},
+				{
+					path: 'profile',
+					component: PageDesktopProfile
 				},
 				{
 					path: 'project',
@@ -62,25 +69,25 @@ export default new VueRouter({
 					path: 'admin/overview',
 					component: PageDesktopOverview,
 					meta: {
-						maintainer: true
+						administratorRequired: true
 					}
 				},
 				{
 					path: 'admin/service',
 					meta: {
-						maintainer: true
+						administratorRequired: true
 					}
 				},
 				{
 					path: 'admin/service/:identifier',
 					meta: {
-						maintainer: true
+						administratorRequired: true
 					}
 				},
 				{
 					path: 'admin/account',
 					meta: {
-						maintainer: true
+						administratorRequired: true
 					}
 				}
 			]

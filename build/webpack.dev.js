@@ -11,9 +11,12 @@ module.exports = merge(webpackBase, {
 	devServer: {
 		port: 3000,
 		host: '0.0.0.0',
-		hot: true,
-		inline: true,
-		disableHostCheck: true
+		// hot: false,
+		// inline: false,
+		disableHostCheck: true,
+		proxy: {
+			'/api': 'http://127.0.0.1:8080'
+		}
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -22,3 +25,7 @@ module.exports = merge(webpackBase, {
 		})
 	]
 });
+
+// const sdl = require('./sdlc');
+
+// sdl.createServer().listen(8080);

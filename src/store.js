@@ -6,12 +6,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	strict: true,
 	state: {
-
+		signedin: false,
+		principal: {
+			administrator: false,
+			name: null
+		}
 	},
 	mutations: {
-
-	},
-	actions: {
-
+		setPrincipal(state, { administrator, name }) {
+			state.signedin = true;
+			state.principal.administrator = administrator;
+			state.principal.name = name;
+		}
 	}
 });
