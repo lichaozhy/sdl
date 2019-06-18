@@ -10,7 +10,7 @@
 	<b-card-group>
     <b-card no-body>
 			<chart-canvas
-				style="height:250px"
+				style="height:210px"
 				:options="{
 					credits: { enabled: false },
 					chart: { type: 'pie' },
@@ -42,23 +42,11 @@
     <b-card no-body>
       <b-card-text><visual-number value="10" /></b-card-text>
       <div slot="header">我创建了</div>
-			<b-button
-				class="w-100"
-				size="sm"
-				variant="link"
-				href="#/desktop/project/owned"
-			>查看我创建的项目</b-button>
     </b-card>
 
     <b-card no-body>
       <b-card-text><visual-number value="40" /></b-card-text>
       <div slot="header">我参与了</div>
-			<b-button
-				class="w-100"
-				size="sm"
-				variant="link"
-				href="#/desktop/project/joined"
-			>查看我参与的项目</b-button>
     </b-card>
   </b-card-group>
 

@@ -8,8 +8,7 @@
       <b-nav-item-dropdown>
         <template slot="button-content">我的项目</template>
         <b-dropdown-item href="#/desktop/project">总览</b-dropdown-item>
-        <b-dropdown-item href="#/desktop/project/owned">我创建的</b-dropdown-item>
-        <b-dropdown-item href="#/desktop/project/joined">我参与的</b-dropdown-item>
+        <b-dropdown-item href="#/desktop/project/all">全部列表</b-dropdown-item>
         <b-dropdown-item href="#/desktop/project/vulnerability">漏洞分析&amp;报告</b-dropdown-item>
       </b-nav-item-dropdown>
       <b-nav-item href="#/desktop/project"></b-nav-item>
