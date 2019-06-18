@@ -4,9 +4,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import backend from './plugin/backend';
+import visualization from './plugin/visualization';
+import chart from './plugin/chart';
 
 Vue.use(BootstrapVue);
 Vue.use(backend);
+Vue.use(visualization);
+Vue.use(chart);
 
 import App from './component/App';
 import router from './router';

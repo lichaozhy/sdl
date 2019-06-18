@@ -32,7 +32,7 @@
 							<b-form-input
 								id="certificate-password"
 								v-model="certificate.password"
-								placeholder="请输入用户名"
+								placeholder="请输入密码"
 								size="sm"
 								type="password"
 								autocomplete="off"

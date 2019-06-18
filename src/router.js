@@ -10,6 +10,9 @@ import PageDesktopProfile from './component/page/desktop/Profile';
 import PageDesktopAbout from './component/page/desktop/About';
 
 import PageDesktopProjectOverview from './component/page/desktop/project/Overview';
+import PageDesktopProjectOwned from './component/page/desktop/project/Owned';
+import PageDesktopProjectJoined from './component/page/desktop/project/Joined';
+import PageDesktopProjectVulnerability from './component/page/desktop/project/Vulnerability';
 import PageDesktopProjectDetail from './component/page/desktop/project/Detail';
 import PageDesktopProjectTeam from './component/page/desktop/project/Team';
 import PageDesktopProjectVersion from './component/page/desktop/project/Version';
@@ -52,6 +55,18 @@ export default new VueRouter({
 				{
 					path: 'project',
 					component: PageDesktopProjectOverview
+				},
+				{
+					path: 'project/owned',
+					component: PageDesktopProjectOwned
+				},
+				{
+					path: 'project/joined',
+					component: PageDesktopProjectJoined
+				},
+				{
+					path: 'project/vulnerability',
+					component: PageDesktopProjectVulnerability
 				},
 				{
 					path: 'project/:hash',
