@@ -281,7 +281,7 @@ export default {
 			this.resource.design.push({
 				typeName: '安全需求与设计',
 				type: 'SecurityRequirement',
-				id: 'requirement_security_project_1_version_v1.1.0_0',
+				id: 'design_security_project_1_version_v1.1.0_0',
 				createdAt: new Date('2018-12-06').toLocaleDateString(),
 				_showDetails: false,
 				download: [
@@ -290,7 +290,7 @@ export default {
 			}, {
 				typeName: '安全开发参考',
 				type: 'SecurityRequirement',
-				id: 'requirement_security_project_1_version_v1.1.0_0',
+				id: 'development_security_project_1_version_v1.1.0_0',
 				createdAt: new Date('2018-12-06').toLocaleDateString(),
 				_showDetails: false,
 				download: [
@@ -312,7 +312,7 @@ export default {
 			this.resource.design.push({
 				typeName: '业务分析与威胁建模',
 				type: 'SecurityRequirement',
-				id: 'requirement_security_project_1_version_v1.1.0_0',
+				id: 'design_feature_project_1_version_v1.1.0_0',
 				createdAt: new Date('2018-12-06').toLocaleDateString(),
 				_showDetails: false,
 				download: [
