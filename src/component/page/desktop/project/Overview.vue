@@ -40,13 +40,22 @@
     </b-card>
 
     <b-card no-body>
-      <b-card-text><visual-number value="10" /></b-card-text>
-      <div slot="header">我创建了</div>
+      <b-card-text><visual-number value="50" /></b-card-text>
+      <div slot="header">我的项目数量</div>
     </b-card>
 
     <b-card no-body>
-      <b-card-text><visual-number value="40" /></b-card-text>
-      <div slot="header">我参与了</div>
+      <b-card-text>
+				<b-button
+					v-for="(name, index) in watching"
+					:key="index"
+					size="md"
+					variant="primary"
+					href="#/desktop/project/1"
+					class="m-2"
+				>{{name}}</b-button>
+			</b-card-text>
+      <div slot="header">我的关注</div>
     </b-card>
   </b-card-group>
 
@@ -151,7 +160,10 @@ export default {
 				joined: {
 					list: [{}, {}, {}, {}]
 				}
-			}
+			},
+			watching: [
+				'手机银行', '新版个人网银', '云盘系统', '直销银行手机银行'
+			]
 		}
 	},
 	async mounted() {
