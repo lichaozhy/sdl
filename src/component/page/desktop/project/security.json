@@ -1,0 +1,177 @@
+{
+	"signin": {
+		"name": "登录",
+		"list": [
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "密码有防范暴力破解的安全控制措施"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "密码信息不要明文回显在页面上"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "采取有效措施防范登录操作的重放攻击"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "会话安全",
+				"description": "会话标识符要具有足够长度、随机性和唯一性"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "会话安全",
+				"description": "应能够对单个用户的多重并发会话进行限制"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "通讯安全",
+				"description": "客户端与服务器应使用安全的协议和强壮的加密算法进行安全、可靠的双向认证的方式加密传输数据"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "对用户输入的数据都要进行恰当的安全检查"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "显示客户身份信息时，应屏蔽部分关键内容"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "重要操作要有日志信息记录"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "对日志有恰当的管理机制，确保日志的机密性、完整性和可用性"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "错误处理",
+				"description": "应能够有效屏蔽系统技术错误信息，不将系统产生的错误信息直接反馈给客户"
+			}
+		]
+	},
+	"account": {
+		"name": "我的账户",
+		"list": [
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "服务端检查用户是否有查看账户信息权限"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "会话安全",
+				"description": "当会话空闲超过一定时间后，自动关闭当前连接，客户再次操作时必须重新登录。"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "通讯安全",
+				"description": "客户端与服务器应使用安全的协议和强壮的加密算法进行安全、可靠的双向认证的方式加密传输数据"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "对用户输入的数据都要进行恰当的安全检查"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "显示客户身份信息时，应屏蔽部分关键内容"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "重要操作要有日志信息记录"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "对日志有恰当的管理机制，确保日志的机密性、完整性和可用性"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "错误处理",
+				"description": "应能够有效屏蔽系统技术错误信息，不将系统产生的错误信息直接反馈给客户"
+			}
+		]
+	},
+	"transfer": {
+		"name": "转账",
+		"list": [
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "资金类交易等高风险业务应使用双因素身份认证"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "密码信息不要明文回显在页面上"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "身份认证",
+				"description": "同一次登录后的重要操作使用同一台终端，例如，验证IP地址、MAC地址、机器码等，如发生变化，应再次对客户身份进行认证，否则服务器端自动终止会话"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "会话安全",
+				"description": "当会话空闲超过一定时间后，自动关闭当前连接，客户再次操作时必须重新登录。"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "通讯安全",
+				"description": "客户端与服务器应使用安全的协议和强壮的加密算法进行安全、可靠的双向认证的方式加密传输数据"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "对用户输入的数据都要进行恰当的安全检查"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "数据安全",
+				"description": "系统应采用哈希校验或数字签名等技术保证交易报文的完整性、真实性"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "重要操作要有日志信息记录"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "日志审计",
+				"description": "对日志有恰当的管理机制，确保日志的机密性、完整性和可用性"
+			},
+			{
+				"category": "应用安全",
+				"subCategory": "错误处理",
+				"description": "应能够有效屏蔽系统技术错误信息，不将系统产生的错误信息直接反馈给客户"
+			},
+			{
+				"category": "业务安全",
+				"subCategory": "交易安全",
+				"description": "资金类交易中，应有安全可靠的机制保证交易的真实性、完整性，防范交易数据被篡改"
+			},
+			{
+				"category": "业务安全",
+				"subCategory": "交易安全",
+				"description": "系统应按照相关业务规定，在服务端对支付额度进行严格控制，根据不同的交易额设置不同的认证方式"
+			},
+			{
+				"category": "业务安全",
+				"subCategory": "交易安全",
+				"description": "转账时用户可以选择转账方式"
+			}
+		]
+	}
+}

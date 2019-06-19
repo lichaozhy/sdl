@@ -255,13 +255,15 @@ stageList[0].versionList.forEach(version => {
 stageList[1].versionList.forEach(version => {
   version.resource = {
     docs: randomInt(1, 5),
+    securityDesign: randomInt(0, 1),
   }
 });
 
 stageList[2].versionList.forEach(version => {
   version.resource = {
     commits: randomInt(6, 20),
-    lint: randomInt(0, 15)
+    lint: randomInt(0, 15),
+    source: randomInt(0, 35)
   }
 });
 
@@ -281,11 +283,13 @@ stageList[4].versionList.forEach(version => {
 });
 
 const tagMap = {
-  feature: { variant: 'success', text: '功能设计' },
-  security: { variant: 'primary', text: '安全设计' },
+  feature: { variant: 'success', text: '功能需求' },
+  security: { variant: 'primary', text: '安全需求' },
+  securityDesign: { variant: 'primary', text: '安全设计' },
   docs: { variant: 'info', text: '自定义文档' },
   commits: { variant: 'success', text: '提交' },
   lint: { variant: 'secondary', text: '不合规检查' },
+  source: { variant: 'danger', text: '白盒漏洞' },
   os: { variant: 'info', text: '开源安全问题' },
   fail: { variant: 'dark', text: '测试失败用例' },
   vulner: { variant: 'danger', text: '漏洞' },
