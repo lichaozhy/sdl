@@ -1,7 +1,7 @@
 <template>
 	
 <div>
-	安全设计
+	安全需求分析已配置
 </div>
 
 </template>

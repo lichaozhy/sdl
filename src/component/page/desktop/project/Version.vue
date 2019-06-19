@@ -107,7 +107,7 @@
 				<b-table
 					class="mt-3"
 					small
-					:items="resource"
+					:items="resource.requirement"
 					:fields="[
 						{ key: 'typeName', label: '资源类型'},
 						{ key: 'id', label: '标识'},
@@ -132,15 +132,50 @@
 				<b-button
 					size="sm"
 					variant="primary"
+					@click="createFeatureDesign"
 				><i
 					class="fas fa-plus mr-2"
-				/>安全设计</b-button>
+				/>生成功能设计</b-button>
+				<b-button
+					size="sm"
+					variant="primary"
+					@click="createSecurityDesign"
+				><i
+					class="fas fa-shield-alt mr-2"
+				/>生成安全设计</b-button>
 				<b-button
 					size="sm"
 					variant="info"
 				><i
 					class="fas fa-upload mr-2"
 				/>上传自定义文档</b-button>
+				<b-table
+					class="mt-3"
+					small
+					:items="resource.design"
+					:fields="[
+						{ key: 'typeName', label: '资源类型'},
+						{ key: 'id', label: '标识'},
+						{ key: 'createdAt', label: '创建时间'},
+						{ key: 'show_details', label: ''},
+					]"
+				>
+					<template slot="show_details" slot-scope="row">
+						<b-button size="sm"
+							@click="row.toggleDetails"
+						>{{ row.detailsShowing ? '隐藏' : '显示'}}详情</b-button>
+					</template>
+					<template slot="row-details" slot-scope="row">
+						<div>
+							<b-button
+								variant="link"
+								v-for="(a, index) in row.item.download"
+								:key="index"
+								:href="a.href"
+							>{{a.text}}</b-button>
+						</div>
+					</template>
+				</b-table>
 			</b-tab>
     </b-tabs>
   </b-card>
@@ -204,19 +239,22 @@ export default {
 				SecurityRequirement
 			},
       project: Project(),
-			resource: [
-				{
-					typeName: '功能需求分析',
-					type: 'FeatureRequirement',
-					id: 'requirement_feature_project_1_version_v1.1.0_0',
-					createdAt: new Date('2018-12-06').toLocaleDateString(),
-					_showDetails: false,
-					elementList: [
-						'登录', '注册', '注销', '修改密码', '挂失', '账户详情',
-						'转账', '缴费', '交易明细'
-					],
-				},
-			],
+			resource: {
+				requirement: [
+					{
+						typeName: '功能需求分析',
+						type: 'FeatureRequirement',
+						id: 'requirement_feature_project_1_version_v1.1.0_0',
+						createdAt: new Date('2018-12-06').toLocaleDateString(),
+						_showDetails: false,
+						elementList: [
+							'登录', '注册', '注销', '修改密码', '挂失', '账户详情',
+							'转账', '缴费', '交易明细'
+						],
+					},
+				],
+				design: []
+			},
 			security,
 			selected: []
     };
@@ -231,12 +269,55 @@ export default {
 			this.$refs.createSecurityRequirement.show();
 		},
 		addSecurityRequirement() {
-			this.resource.push({
+			this.resource.requirement.push({
 				typeName: '安全需求分析',
 				type: 'SecurityRequirement',
 				id: 'requirement_security_project_1_version_v1.1.0_0',
 				createdAt: new Date('2018-12-06').toLocaleDateString(),
 				_showDetails: false,
+			});
+		},
+		createSecurityDesign() {
+			this.resource.design.push({
+				typeName: '安全需求与设计',
+				type: 'SecurityRequirement',
+				id: 'requirement_security_project_1_version_v1.1.0_0',
+				createdAt: new Date('2018-12-06').toLocaleDateString(),
+				_showDetails: false,
+				download: [
+					{ text: 'security_design.docx', href: '/assets/resources/security_design.docx'}
+				]
+			}, {
+				typeName: '安全开发参考',
+				type: 'SecurityRequirement',
+				id: 'requirement_security_project_1_version_v1.1.0_0',
+				createdAt: new Date('2018-12-06').toLocaleDateString(),
+				_showDetails: false,
+				download: [
+					{ text: '会话标识符.docx', href: '/assets/resources/signin/会话标识符.docx' },
+					{ text: '加密传输数据.docx', href: '/assets/resources/signin/加密传输数据.docx' },
+					{ text: '口令暴力猜解.docx', href: '/assets/resources/signin/口令暴力猜解.docx' },
+					{ text: '多重并发会话.docx', href: '/assets/resources/signin/多重并发会话.docx' },
+					{ text: '密码明文回显.docx', href: '/assets/resources/signin/密码明文回显.docx' },
+					{ text: '敏感信息脱敏.docx', href: '/assets/resources/signin/敏感信息脱敏.docx' },
+					{ text: '日志管理.docx', href: '/assets/resources/signin/日志管理.docx' },
+					{ text: '登录重放攻击.docx', href: '/assets/resources/signin/登录重放攻击.docx' },
+					{ text: '记录日志.docx', href: '/assets/resources/signin/记录日志.docx' },
+					{ text: '输入验证.docx', href: '/assets/resources/signin/输入验证.docx' },
+					{ text: '错误处理.docx', href: '/assets/resources/signin/错误处理.docx' },
+				]
+			});
+		},
+		createFeatureDesign() {
+			this.resource.design.push({
+				typeName: '业务分析与威胁建模',
+				type: 'SecurityRequirement',
+				id: 'requirement_security_project_1_version_v1.1.0_0',
+				createdAt: new Date('2018-12-06').toLocaleDateString(),
+				_showDetails: false,
+				download: [
+					{ text: 'feature_prototype_design.docx', href: '/assets/resources/feature_prototype_design.docx'}
+				]
 			});
 		}
 	}
