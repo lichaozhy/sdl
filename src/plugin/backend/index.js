@@ -77,6 +77,9 @@ export default function install(Vue) {
 			scanList(projectId) {
 				return axios.get(`/ntu/scanlist/${projectId}`).then(transformData);
 			},
+			fileNow(projectId) {
+				return axios.get(`/ntu/filenow/${projectId}`).then(transformData);
+			},
 			upload(projectId, downloadLink, fileModified, fileSize, fileName, formData) {
 				return axios.get(`/ntu/upload/${projectId}`, {
 					headers: {
@@ -87,7 +90,7 @@ export default function install(Vue) {
 						formdata: formData
 					}
 				}).then(transformData);
-			}
+			},
 		}
 	};
 }

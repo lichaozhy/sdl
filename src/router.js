@@ -18,6 +18,8 @@ import PageDesktopProjectVersion from './component/page/desktop/project/Version'
 
 import PageDesktopOverview from './component/page/desktop/admin/Overview';
 
+import NtuScanOverview from './component/page/desktop/tool/NtuScanOverview.vue';
+
 export default new VueRouter({
 	routes: [
 		{
@@ -99,6 +101,10 @@ export default new VueRouter({
 					meta: {
 						administratorRequired: true
 					}
+				},
+				{
+					path: 'tool/ntu',
+					component: NtuScanOverview
 				}
 			]
 		}

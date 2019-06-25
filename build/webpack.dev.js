@@ -96,6 +96,17 @@ axios.post(`${NTU_BACKEND}/v1/rest-auth/login/`, {
 			
 			ctx.body = response.data;
 		})
+		.get('/filenow/:projectId', async ctx => {
+			const { projectId } = ctx.params;
+	
+			const response = await axios.get(`${NTU_BACKEND}/v1/projects/${projectId}/uploads/`, {
+				headers: {
+					Authorization: `Token ${token}`
+				}
+			});
+			
+			ctx.body = response.data;
+		})
 		.get('/upload/:projectId', async ctx => {
 			const { projectId } = ctx.params;
 			const { downloadlink, filemodified, filesize, filename, formdata } = ctx.request.header;

@@ -328,8 +328,8 @@
 		<template slot="modal-title">扫描配置</template>
 		<h5>上次扫描:</h5>
 		
-		<div class="ml-4 mt-2">文件名称:123123</div>
-		<div class="ml-4 mb-2">文件大小:123123</div>
+		<div v-if="fileNow !== null" class="ml-4 mt-2">文件名称:&nbsp;{{ fileNow['filename'] }}</div>
+		<div v-if="fileNow !== null" class="ml-4 mb-2">文件大小:&nbsp;{{ fileNow['file_size'] > 1 ? Math.round(fileNow['file_size'] * 100)/100 + 'MB' : Math.round(fileNow['file_size'] * 1024) + 'KB' }}</div>
 		<h5>扫描新文件:</h5>
 		
 		<b-form-file
@@ -394,13 +394,15 @@ export default {
 			security,
 			selected: [],
 
+			projectId: 37,
 			ntuProject: {},
 			scanList: [],
 			scanStatus: false,
 			scanTotal: 100,
 			scanPercentage: 0,
 			testMaskStatus: false,
-			newScanFile: null
+			newScanFile: null,
+			fileNow: null
 		};
 	},
 	computed: {
@@ -411,6 +413,7 @@ export default {
 	mounted() {
 		// this.getNtuProject();
 		this.getNtuScanList();
+		this.getFileNow();
 	},
 	methods: {
 		openCreateSecurityRequirement() {
@@ -472,7 +475,7 @@ export default {
 			this.$refs.ntuScanSetting.show();
 		},
 		getNtuScanList() {
-			this.$backend.ntu.scanList(38).then(res => {
+			this.$backend.ntu.scanList(this.projectId).then(res => {
 				this.scanList = res.results;
 				// console.log(this.scanList);
 				
@@ -486,7 +489,7 @@ export default {
 			formData.append('file', this.newScanFile);
 
 
-			this.$backend.ntu.upload(37, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name, formData).then(res => {
+			this.$backend.ntu.upload(this.projectId, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name, formData).then(res => {
 				// console.log(res);
 				
 				this.startNtuScan();
@@ -502,7 +505,7 @@ export default {
 			this.newScanFile = null;
 		},
 		startNtuScan() {
-			this.$backend.ntu.scan(38).then(res => {
+			this.$backend.ntu.scan(this.projectId).then(res => {
 				this.testMaskStatus = true;
 
 				window.setTimeout(() => {
@@ -514,7 +517,7 @@ export default {
 			});
 		},
 		getNtuProject() {
-			this.$backend.ntu.project(38).then(res => {
+			this.$backend.ntu.project(this.projectId).then(res => {
 				this.scanStatus = res.lastScan.status;
 						
 				if (res.lastScan.status === 'running') {
@@ -536,7 +539,13 @@ export default {
 					}, 800);
 				}
 			});
-		}
+		},
+		getFileNow() {
+			this.$backend.ntu.fileNow(this.projectId).then(res => {
+				this.fileNow = res.results[0];
+				console.log(this.fileNow);
+			});
+		},
 	}
 };
 </script>
@@ -567,7 +576,7 @@ export default {
 
 	span {
 		position: absolute;
-    left: 48%;
+		left: 48%;
 		top: 10%;
 	}
 }

@@ -21,6 +21,24 @@
         right 
         v-if="isAdministrator"
       >
+        <template slot="button-content">其他工具</template>
+        <b-dropdown-item
+          href="#/desktop/tool/ntu"
+        >开源漏洞扫描</b-dropdown-item>
+        <b-dropdown-item
+          v-if="isAdministrator"
+          href=""
+        >工具2</b-dropdown-item>
+        <b-dropdown-item
+          v-if="isAdministrator"
+          href=""
+        >工具3</b-dropdown-item>
+      </b-nav-item-dropdown>
+
+      <b-nav-item-dropdown
+        right 
+        v-if="isAdministrator"
+      >
         <template slot="button-content">管理</template>
         <b-dropdown-item
           href="#/desktop/admin/overview"
