@@ -82,9 +82,9 @@
 	</b-row>
 
 	<h3 class="mt-3">资源</h3>
-  <b-card no-body>
-    <b-tabs card>
-      <b-tab title="需求分析阶段" active>
+	<b-card no-body>
+		<b-tabs card>
+			<b-tab title="需求分析阶段" active>
 				<b-button
 					size="sm"
 					variant="success"
@@ -127,7 +127,7 @@
 						></component>
 					</template>
 				</b-table>
-      </b-tab>
+			</b-tab>
 			<b-tab title="设计阶段">
 				<b-button
 					size="sm"
@@ -177,8 +177,111 @@
 					</template>
 				</b-table>
 			</b-tab>
-    </b-tabs>
-  </b-card>
+			<b-tab title="测试阶段">
+				<div 
+					v-if="testMaskStatus"
+					class="version-test-mask"
+				>
+					<b-spinner variant="primary" label="Spinning"></b-spinner>
+				</div>
+
+				<b-button
+					size="sm"
+					variant="primary"
+					@click="showNtuScanSetting"
+				><i
+					class="fas fa-shield-alt mr-2"
+				/>开源漏洞扫描</b-button>
+				<b-progress
+					v-if="scanStatus"
+					animated
+					:value="scanPercentage"
+					:max="scanTotal"
+					class="mt-3"></b-progress>
+				<b-table
+					class="mt-3 text-center version-scan-table"
+					small
+					:items="scanList"
+					:fields="[
+						{ key: 'id', label: '扫描编号'},
+						{ key: 'time', label: '开始时间'},
+						{ key: 'status', label: '状态'},
+						{ key: 'vul', label: '漏洞'},
+						{ key: 'license', label: '许可证'},
+						{ key: 'library', label: '组件'},
+					]"
+				>
+					<template
+						slot="time"
+						slot-scope="data"
+					>{{ ago(Date.parse(data.item['modified'])) }}</template>
+
+					<template
+						slot="status"
+						slot-scope="data"
+					>
+						<b-button
+							v-if="data.item.status === 'finished'"
+							squared 
+							variant='success'
+							size='sm'
+						>完成</b-button>
+						<b-button
+							v-if="data.item.status === 'failed'"
+							squared 
+							variant='danger'
+							size='sm'
+						>失败</b-button>
+						<b-button
+							v-if="data.item.status === 'running'"
+							squared 
+							variant='warning'
+							size='sm'
+						>扫描中...</b-button>
+					</template>
+
+					<template
+						slot="vul"
+						slot-scope="data"
+					>
+						<b-button
+							v-if="data.item.status === 'finished'"
+							pill
+							variant='primary'
+							size='sm'
+							:href='`http://52.82.100.75:8888/u/test1/org/test1/projects/38/scans/${data.item.id}`'
+						>查看</b-button>
+					</template>
+
+					<template
+						slot="license"
+						slot-scope="data"
+					>
+						<b-button
+							v-if="data.item.status === 'finished'"
+							pill
+							variant='primary'
+							size='sm'
+							:href='`http://52.82.100.75:8888/u/test1/org/test1/projects/38/scans/${data.item.id}/license`'
+						>查看</b-button>
+					</template>
+
+					<template
+						slot="library"
+						slot-scope="data"
+					>
+						<b-button
+							v-if="data.item.status === 'finished'"
+							pill
+							variant='primary'
+							size='sm'
+							:href='`http://52.82.100.75:8888/u/test1/org/test1/projects/38/scans/${data.item.id}/library`'
+						>查看</b-button>
+					</template>
+				</b-table>
+			</b-tab>
+		</b-tabs>
+	</b-card>
 
 	<b-modal
 		ref="createSecurityRequirement"
@@ -216,6 +319,38 @@
 			</b-tabs>
 		</div>
 	</b-modal>
+	<!-- 扫描配置 -->
+	<b-modal
+		ref="ntuScanSetting"
+		@show="resetScanFile"
+		hide-footer
+	>
+		<template slot="modal-title">扫描配置</template>
+		<h5>上次扫描:</h5>
+		
+		<div class="ml-4 mt-2">文件名称:123123</div>
+		<div class="ml-4 mb-2">文件大小:123123</div>
+		<h5>扫描新文件:</h5>
+		
+		<b-form-file
+			v-model="newScanFile"
+			class="mt-3"
+		></b-form-file>
+		<b-button
+			v-if="Boolean(newScanFile)"
+			class="mt-3" 
+			block
+			variant="success"
+			@click="scanNewFile"
+		>扫描新文件</b-button>
+		<b-button 
+			v-if="!Boolean(newScanFile)"
+			class="mt-3" 
+			block
+			variant="success"
+			@click="scanOldFile"
+		>重复上次扫描</b-button>
+	</b-modal>
 </div>
 
 </template>
@@ -224,21 +359,22 @@
 import FeatureRequirement from './resource/FeatureRequirement';
 import SecurityRequirement from './resource/SecurityRequirement';
 import security from './security.json';
+import dateFormat from 'dateformat';
 
 function Project() {
-  return {
+	return {
 		name: "手机银行",
-  };
+	};
 }
 
 export default {
-  data() {
-    return {
+	data() {
+		return {
 			resComp: {
 				FeatureRequirement,
 				SecurityRequirement
 			},
-      project: Project(),
+			project: Project(),
 			resource: {
 				requirement: [
 					{
@@ -256,13 +392,25 @@ export default {
 				design: []
 			},
 			security,
-			selected: []
-    };
-  },
+			selected: [],
+
+			ntuProject: {},
+			scanList: [],
+			scanStatus: false,
+			scanTotal: 100,
+			scanPercentage: 0,
+			testMaskStatus: false,
+			newScanFile: null
+		};
+	},
 	computed: {
 		semver() {
 			return this.$route.params.semver;
 		}
+	},
+	mounted() {
+		// this.getNtuProject();
+		this.getNtuScanList();
 	},
 	methods: {
 		openCreateSecurityRequirement() {
@@ -319,13 +467,108 @@ export default {
 					{ text: 'feature_prototype_design.docx', href: '/assets/resources/feature_prototype_design.docx'}
 				]
 			});
+		},
+		showNtuScanSetting() {
+			this.$refs.ntuScanSetting.show();
+		},
+		getNtuScanList() {
+			this.$backend.ntu.scanList(38).then(res => {
+				this.scanList = res.results;
+				// console.log(this.scanList);
+				
+			});
+		},
+		scanNewFile() {
+			const fileModified = dateFormat(this.newScanFile.lastModifiedDate, 'yyyy-mm-dd HH:mm:ss');
+			const fileSize = this.newScanFile.size / (1024*1024);
+
+			const formData = new FormData();
+			formData.append('file', this.newScanFile);
+
+
+			this.$backend.ntu.upload(37, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name, formData).then(res => {
+				// console.log(res);
+				
+				this.startNtuScan();
+				this.$refs.ntuScanSetting.hide();
+			});
+
+		},
+		scanOldFile() {
+			this.startNtuScan();
+			this.$refs.ntuScanSetting.hide();
+		},
+		resetScanFile() {
+			this.newScanFile = null;
+		},
+		startNtuScan() {
+			this.$backend.ntu.scan(38).then(res => {
+				this.testMaskStatus = true;
+
+				window.setTimeout(() => {
+					this.testMaskStatus = false;
+					this.scanStatus = true;
+					this.getNtuScanList();
+					this.getNtuProject();
+				}, 4000);
+			});
+		},
+		getNtuProject() {
+			this.$backend.ntu.project(38).then(res => {
+				this.scanStatus = res.lastScan.status;
+						
+				if (res.lastScan.status === 'running') {
+					this.scanPercentage = res.lastScan['scan_percentage'];
+					window.setTimeout(this.getNtuProject, 2000);
+				} else {
+					this.scanPercentage = 100;
+					window.setTimeout(() => {
+						this.$bvToast.toast('扫描完成', {
+							title: null,
+							variant: 'primary',
+							toaster: 'b-toaster-top-center',
+							autoHideDelay: 2000,
+							noCloseButton: true,
+							solid: true
+						});
+						this.getNtuScanList();
+						this.scanStatus = false;
+					}, 800);
+				}
+			});
 		}
 	}
-}
+};
 </script>
 
 <style lang="less">
-.security-description{
+.security-description {
 	width: 32em;
+}
+.version-scan-table {
+	td:nth-child(1) {
+		width: 10%;
+	}
+	td:nth-child(2) {
+		width: 20%;
+	}
+	td:nth-child(3) {
+		width: 20%;
+	}
+}
+.version-test-mask {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.8);
+	z-index: 100;
+	top: 0;
+	left: 0;
+
+	span {
+		position: absolute;
+    left: 48%;
+		top: 10%;
+	}
 }
 </style>

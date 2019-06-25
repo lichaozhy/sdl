@@ -1,7 +1,13 @@
 import personData from './account.json';
 import categoryData from './category.json';
 import projectData from './project.json';
+
+import axios from 'axios';
 import Cookies from 'js-cookie';
+
+function transformData(res) {
+	return res.data;
+}
 
 export default function install(Vue) {
 	return Vue.prototype.$backend = Vue.$backend = {
@@ -59,6 +65,28 @@ export default function install(Vue) {
 				revert(projectId) {
 
 				}
+			}
+		},
+		ntu: {
+			scan(projectId) {
+				return axios.get(`/ntu/scan/${projectId}`).then(transformData);
+			},
+			project(projectId) {
+				return axios.get(`/ntu/project/${projectId}`).then(transformData);
+			},
+			scanList(projectId) {
+				return axios.get(`/ntu/scanlist/${projectId}`).then(transformData);
+			},
+			upload(projectId, downloadLink, fileModified, fileSize, fileName, formData) {
+				return axios.get(`/ntu/upload/${projectId}`, {
+					headers: {
+						downloadlink: downloadLink,
+						filemodified: fileModified,
+						filesize: fileSize,
+						filename: fileName,
+						formdata: formData
+					}
+				}).then(transformData);
 			}
 		}
 	};

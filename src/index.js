@@ -9,10 +9,14 @@ import backend from './plugin/backend';
 import visualization from './plugin/visualization';
 import chart from './plugin/chart';
 
+import mixin from './component/mixin/index';
+
 Vue.use(BootstrapVue);
 Vue.use(backend);
 Vue.use(visualization);
 Vue.use(chart);
+
+Vue.mixin(mixin);
 
 import App from './component/App';
 import router from './router';
