@@ -15,10 +15,11 @@ import PageDesktopProjectVulnerability from './component/page/desktop/project/Vu
 import PageDesktopProjectDetail from './component/page/desktop/project/Detail';
 import PageDesktopProjectTeam from './component/page/desktop/project/Team';
 import PageDesktopProjectVersion from './component/page/desktop/project/Version';
+import ScanOverview from './component/page/desktop/project/ScanOverview';
 
 import PageDesktopOverview from './component/page/desktop/admin/Overview';
 
-import NtuScanOverview from './component/page/desktop/tool/NtuScanOverview.vue';
+import NtuScanOverview from './component/page/desktop/tool/NtuScanOverview';
 
 export default new VueRouter({
 	routes: [
@@ -64,6 +65,10 @@ export default new VueRouter({
 				{
 					path: 'project/vulnerability',
 					component: PageDesktopProjectVulnerability
+				},
+				{
+					path: 'project/scanoverview',
+					component: ScanOverview
 				},
 				{
 					path: 'project/:hash',
