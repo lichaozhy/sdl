@@ -5,6 +5,12 @@ import projectData from './project.json';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+let ntuToken;
+axios.get('/ntu/login').then(res => {
+	// localStorage.setItem('ntuToken', res.data.token);
+	ntuToken = res.data.token;
+});
+
 function transformData(res) {
 	return res.data;
 }
@@ -68,6 +74,9 @@ export default function install(Vue) {
 			}
 		},
 		ntu: {
+			// login() {
+			// 	return axios.get('/ntu/login').then(transformData);
+			// },
 			scan(projectId) {
 				return axios.get(`/ntu/scan/${projectId}`).then(transformData);
 			},
@@ -80,17 +89,34 @@ export default function install(Vue) {
 			fileNow(projectId) {
 				return axios.get(`/ntu/filenow/${projectId}`).then(transformData);
 			},
-			upload(projectId, downloadLink, fileModified, fileSize, fileName, formData) {
-				return axios.get(`/ntu/upload/${projectId}`, {
-					headers: {
+			// upload(projectId, downloadLink, fileModified, fileSize, fileName, formData) {
+			// 	return axios.get(`/ntu/upload/${projectId}`, {
+			// 		headers: {
+			// 			downloadlink: downloadLink,
+			// 			filemodified: fileModified,
+			// 			filesize: fileSize,
+			// 			filename: fileName,
+			// 			formdata: formData
+			// 		}
+			// 	}).then(transformData);
+			// },
+			upload: {
+				message(projectId, downloadLink, fileModified, fileSize, fileName) {
+					return axios.post(`/ntu/upload/${projectId}`, {
 						downloadlink: downloadLink,
 						filemodified: fileModified,
 						filesize: fileSize,
-						filename: fileName,
-						formdata: formData
-					}
-				}).then(transformData);
-			},
+						filename: fileName
+					}).then(transformData);
+				},
+				file(formData) {
+					return axios.post('/v1/upload/', formData, {
+						headers: {
+							Authorization: `Token ${ntuToken}`
+						}
+					}).then(transformData);
+				},
+			}
 		}
 	};
 }

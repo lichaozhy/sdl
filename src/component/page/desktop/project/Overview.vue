@@ -6,6 +6,26 @@
 			{ text: '我的项目', active: true }
 		]"
 	/>
+	<h3 class="mt-3">项目概览</h3>
+
+	<b-card-group class="text-center">
+		<b-card no-body>
+			<b-card-text><visual-number value="35" style="color:#72B422;"/></b-card-text>
+			<div slot="header">正在进行的项目</div>
+		</b-card>
+		<b-card no-body>
+			<b-card-text><visual-number value="15" style="color:#020C7E;"/></b-card-text>
+			<div slot="header">已完成的项目</div>        
+		</b-card>
+		<b-card no-body>
+			<b-card-text><visual-number value="5" style="color:#A1051B;"/></b-card-text>
+			<div slot="header">高危项目</div>                
+		</b-card>
+		<b-card no-body>
+			<b-card-text><visual-number value="15" /></b-card-text>
+			<div slot="header">项目组</div>
+		</b-card>
+	</b-card-group>
 	<h3 class="mt-3">基础统计</h3>
 	<b-card-group>
     <b-card no-body>
@@ -59,21 +79,45 @@
     </b-card>
   </b-card-group>
 
+	<h3 class="mt-3">项目执行概览</h3>
+
+	<b-card-group class="text-center">
+		<b-card
+			v-for="(item, index) in projectComplyOverview"
+			:key="index"
+			no-body
+		>
+			<!-- <b-link slot="header" to="">{{ item.header }}</b-link> -->
+			<div slot="header" to="">{{ item.header }}</div>
+			<b-progress 
+				:max="item.max" 
+				height="40px"
+				class="rounded-0"
+				:variant="item.variant"
+			>
+				<b-progress-bar :value="item.value">
+					<div style="color:#000;">执行中/总数:</div>
+					<strong>{{ item.value }} / {{ item.max }}</strong>
+				</b-progress-bar>
+			</b-progress>
+		</b-card>
+	</b-card-group>
+
 	<h3 class="mt-3">漏洞</h3>
 	<b-card-group>
 
     <b-card no-body>
-      <b-card-text><visual-number value="25" /></b-card-text>
+      <b-card-text><visual-number value="47" /></b-card-text>
       <div slot="header">高度危险</div>
     </b-card>
 
     <b-card no-body>
-      <b-card-text><visual-number value="214" /></b-card-text>
+      <b-card-text><visual-number value="25" /></b-card-text>
       <div slot="header">中等危险</div>
     </b-card>
 
     <b-card no-body>
-      <b-card-text><visual-number value="101" /></b-card-text>
+      <b-card-text><visual-number value="18" /></b-card-text>
       <div slot="header">低等危险</div>
     </b-card>
     <b-card no-body>
@@ -163,6 +207,12 @@ export default {
 			},
 			watching: [
 				'手机银行', '新版个人网银', '云盘系统', '直销银行手机银行'
+			],
+			projectComplyOverview: [
+				{ header: '安全需求分析' ,max: 50, value: 15, variant: 'success' },
+				{ header: '安全开发执行中' ,max: 50, value: 10, variant: 'info' },
+				{ header: '安全测试执行中' ,max: 50, value: 10, variant: 'warning' },
+				{ header: '安全监控执行中' ,max: 50, value: 15, variant: 'primary' },
 			]
 		}
 	},

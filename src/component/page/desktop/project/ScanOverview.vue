@@ -10,15 +10,15 @@
 
 		<b-card-group class="text-center">
 			<b-card no-body>
-				<b-card-text><visual-number value="124" style="color:#72B422;"/></b-card-text>
+				<b-card-text><visual-number value="35" style="color:#72B422;"/></b-card-text>
 				<b-link slot="header">正在进行的扫描任务</b-link>
 			</b-card>
 			<b-card no-body>
-				<b-card-text><visual-number value="40" style="color:#020C7E;"/></b-card-text>
+				<b-card-text><visual-number value="15" style="color:#020C7E;"/></b-card-text>
 				<b-link slot="header">已完成的扫描任务</b-link>        
 			</b-card>
 			<b-card no-body>
-				<b-card-text><visual-number value="15" style="color:#A1051B;"/></b-card-text>
+				<b-card-text><visual-number value="5" style="color:#A1051B;"/></b-card-text>
 				<b-link slot="header">失败任务</b-link>                
 			</b-card>
 			<b-card no-body>
@@ -61,7 +61,8 @@
 					:variant="item.variant"
 				>
 					<b-progress-bar :value="item.value">
-						正在扫描/总项目数: <strong>{{ item.value }} / {{ item.max }}</strong>
+						<div style="color:#000;">正在扫描/总项目数:</div>
+						<strong>{{ item.value }} / {{ item.max }}</strong>
 					</b-progress-bar>
 				</b-progress>
 			</b-card>
@@ -74,7 +75,7 @@
 			:items="[
 				{ name: '项目组1', group: '40', time: '', result: '' },
 				{ name: '项目组2', group: '10', time: '', result: '' },
-				{ name: '项目组3', group: '5', time: '', result: '' },
+				{ name: '项目组3', group: '0', time: '', result: '' },
 			]"
 			:fields="[
 				{ key: 'name', label: '项目名称' },
@@ -100,11 +101,11 @@ export default {
 	data() {
 		return {
 			projectComplyOverview: [
-				{ header: '白盒扫描CheckMarx' ,max: 20, value: 10, variant: 'success' },
-				{ header: '黑盒漏洞扫描' ,max: 30, value: 22, variant: 'info' },
-				{ header: 'App漏洞扫描' ,max: 25, value: 20, variant: 'warning' },
-				{ header: '开源库漏洞扫描' ,max: 18, value: 15, variant: 'primary' },
-				{ header: '扫描器1' ,max: 11, value: 10, variant: 'danger' },
+				{ header: '白盒扫描CheckMarx' ,max: 50, value: 23, variant: 'success' },
+				{ header: '黑盒漏洞扫描' ,max: 50, value: 22, variant: 'info' },
+				{ header: 'App漏洞扫描' ,max: 50, value: 33, variant: 'warning' },
+				{ header: '开源库漏洞扫描' ,max: 50, value: 15, variant: 'primary' },
+				{ header: '扫描器1' ,max: 50, value: 17, variant: 'danger' },
 			]
 		}
 	}

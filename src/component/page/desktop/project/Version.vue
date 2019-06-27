@@ -204,6 +204,7 @@
 					:items="scanList"
 					:fields="[
 						{ key: 'id', label: '扫描编号'},
+						{ key: 'branch', label: '文件名'},
 						{ key: 'time', label: '开始时间'},
 						{ key: 'status', label: '状态'},
 						{ key: 'vul', label: '漏洞'},
@@ -411,7 +412,6 @@ export default {
 		}
 	},
 	mounted() {
-		// this.getNtuProject();
 		this.getNtuScanList();
 		this.getFileNow();
 	},
@@ -478,7 +478,6 @@ export default {
 			this.$backend.ntu.scanList(this.projectId).then(res => {
 				this.scanList = res.results;
 				// console.log(this.scanList);
-				
 			});
 		},
 		scanNewFile() {
@@ -488,10 +487,17 @@ export default {
 			const formData = new FormData();
 			formData.append('file', this.newScanFile);
 
+			// this.$backend.ntu.upload.message(this.projectId, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name).then(res => {
+			// 	console.log(res);
+			// 	this.$backend.ntu.upload.file();
+			// 	// this.startNtuScan();
+			// 	// this.$refs.ntuScanSetting.hide();
+			// });
 
-			this.$backend.ntu.upload(this.projectId, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name, formData).then(res => {
-				// console.log(res);
-				
+			Promise.all([
+				this.$backend.ntu.upload.message(this.projectId, this.newScanFile.name, fileModified, fileSize, this.newScanFile.name),
+				this.$backend.ntu.upload.file(formData)
+			]).then(res => {
 				this.startNtuScan();
 				this.$refs.ntuScanSetting.hide();
 			});
@@ -543,7 +549,7 @@ export default {
 		getFileNow() {
 			this.$backend.ntu.fileNow(this.projectId).then(res => {
 				this.fileNow = res.results[0];
-				console.log(this.fileNow);
+				// console.log(this.fileNow);
 			});
 		},
 	}

@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const axios = require('axios');
 const Koa = require('koa');
 const Router = require('koa-router');
+const KoaBody = require('koa-body');
 
 const NTU_BACKEND = 'http://52.82.100.75:8000';
 
@@ -23,6 +24,7 @@ module.exports = merge(webpackBase, {
 		proxy: {
 			'/api': 'http://127.0.0.1:8080',
 			'/ntu': 'http://127.0.0.1:4000',
+			'/v1/upload/': 'http://52.82.100.75:8000'
 		}
 	},
 	plugins: [
@@ -51,12 +53,7 @@ axios.post(`${NTU_BACKEND}/v1/rest-auth/login/`, {
 				password: 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f'
 			});
 			
-			ctx.body = `
-					<script>
-						localStorage.setItem('access_token', '${token}');
-					</script>
-				`;
-			ctx.redirect(`${NTU_BACKEND}/u/test1/org/test1/projects/24`); 
+			ctx.body = response.data;
 		})
 		.get('/scan/:projectId', async ctx => {
 			const { projectId } = ctx.params;
@@ -107,29 +104,9 @@ axios.post(`${NTU_BACKEND}/v1/rest-auth/login/`, {
 			
 			ctx.body = response.data;
 		})
-		.get('/upload/:projectId', async ctx => {
+		.post('/upload/:projectId', KoaBody(), async ctx => {
 			const { projectId } = ctx.params;
-			const { downloadlink, filemodified, filesize, filename, formdata } = ctx.request.header;
-
-			// console.log(formdata);
-			
-			// const response = await Promise.all([
-			// 	axios.post(`${NTU_BACKEND}/v1/projects/${projectId}/uploads/`, {
-			// 		download_link: downloadlink,
-			// 		file_modified: filemodified,
-			// 		file_size: filesize,
-			// 		filename: filename
-			// 	}, {
-			// 		headers: {
-			// 			Authorization: `Token ${token}`
-			// 		}
-			// 	}),
-			// 	axios.post(`${NTU_BACKEND}/v1/upload/`, formdata, {
-			// 		headers: {
-			// 			Authorization: `Token ${token}`
-			// 		}
-			// 	})
-			// ]);
+			const { downloadlink, filemodified, filesize, filename } = ctx.request.body;
 	
 			const response = await axios.post(`${NTU_BACKEND}/v1/projects/${projectId}/uploads/`, {
 				download_link: downloadlink,
