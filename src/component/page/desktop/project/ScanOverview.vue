@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="scan-overview">
 		<b-breadcrumb
 			:items="[
 				{ text: '我的项目', href: '#/desktop/project' },
@@ -22,7 +22,7 @@
 				<b-link slot="header">失败任务</b-link>                
 			</b-card>
 			<b-card no-body>
-				<b-card-text><visual-number value="15" /></b-card-text>
+				<b-card-text><visual-number value="5" /></b-card-text>
 				<b-link slot="header">在线扫描器</b-link>
 			</b-card>
 		</b-card-group>
@@ -30,30 +30,32 @@
 		<b-table
 			bordered
 			small
-			class="text-center mt-4"
+			striped
+			class="text-center mt-4 scan-task-table"
 			:items="[
-				{ group: '项目组1', project: '40' },
-				{ group: '项目组2', project: '10' },
-				{ group: '项目组3', project: '0' },
+				{ group: '开发三部', ing: '14', done: '10', fail: '2', total: '26'},
+				{ group: '开发一部', ing: '11', done: '4', fail: '1', total: '16'},
+				{ group: '开发六部', ing: '10', done: '1', fail: '2', total: '13'},
 			]"
 			:fields="[
 				{ key: 'group', label: '项目组' },
-				{ key: 'project', label: '提交项目' },
+				{ key: 'ing', label: '正在进行' },
+				{ key: 'done', label: '已完成' },
+				{ key: 'fail', label: '失败' },
+				{ key: 'total', label: '总数' },
 			]"
 		>
 		</b-table>
 
-		<h3 class="mt-3">
-			<b-link>项目执行概览</b-link>
-		</h3>
+		<h3 class="mt-3">项目执行概览</h3>
 
-		<b-card-group class="text-center">
+		<b-card-group class="text-center mb-3">
 			<b-card
 				v-for="(item, index) in projectComplyOverview"
 				:key="index"
 				no-body
 			>
-				<b-link slot="header" to="">{{ item.header }}</b-link>
+				<div slot="header" to="">{{ item.header }}</div>
 				<b-progress 
 					:max="item.max" 
 					height="40px"
@@ -61,38 +63,48 @@
 					:variant="item.variant"
 				>
 					<b-progress-bar :value="item.value">
-						<div style="color:#000;">正在扫描/总项目数:</div>
+						<div style="color:#000;">正在扫描/总数:</div>
 						<strong>{{ item.value }} / {{ item.max }}</strong>
 					</b-progress-bar>
 				</b-progress>
 			</b-card>
 		</b-card-group>
-		
-		<b-table
-			bordered
-			small
-			class="text-center mt-4"
-			:items="[
-				{ name: '项目组1', group: '40', time: '', result: '' },
-				{ name: '项目组2', group: '10', time: '', result: '' },
-				{ name: '项目组3', group: '0', time: '', result: '' },
-			]"
-			:fields="[
-				{ key: 'name', label: '项目名称' },
-				{ key: 'group', label: '提交团队' },
-				{ key: 'time', label: '时间' },
-				{ key: 'result', label: '检测结果' },
-				{ key: 'action', label: '插队' },
-			]"
-		>
-			<template
-				slot="action"
-				slot-scope="data"
-			>
-				<b-link>立即检测</b-link>
-			</template>
-		</b-table>
 
+		<b-tabs 
+			content-class="mt-3" 
+			justified
+		>
+			<b-tab
+				v-for="(team, index) in scanTeamsClone"
+				:key="index"
+				:title="team.scaner"
+			>
+				<b-table
+					bordered
+					small
+					striped
+					class="text-center mt-4"
+					:items="team.teams"
+					:fields="[
+						{ key: 'group', label: '提交团队' },
+						{ key: 'name', label: '项目名称' },
+						{ key: 'version', label: '版本' },
+						{ key: 'time', label: '提交时间' },
+						{ key: 'action', label: '插队' },
+					]"
+				>
+					<template
+						slot="action"
+						slot-scope="data"
+					>
+						<b-link 
+							v-if="data.index !== 0"
+							@click="cutLine(index, data.index)"
+						>插队</b-link>
+					</template>
+				</b-table>
+			</b-tab>
+		</b-tabs>
 	</div>
 </template>
 
@@ -101,17 +113,47 @@ export default {
 	data() {
 		return {
 			projectComplyOverview: [
-				{ header: '白盒扫描CheckMarx' ,max: 50, value: 23, variant: 'success' },
-				{ header: '黑盒漏洞扫描' ,max: 50, value: 22, variant: 'info' },
-				{ header: 'App漏洞扫描' ,max: 50, value: 33, variant: 'warning' },
-				{ header: '开源库漏洞扫描' ,max: 50, value: 15, variant: 'primary' },
-				{ header: '扫描器1' ,max: 50, value: 17, variant: 'danger' },
+				{ header: '开源库漏洞扫描' ,max: 20, value: 15, variant: 'primary' },
+				{ header: '白盒扫描CheckMarx' ,max: 10, value: 10, variant: 'success' },
+				{ header: '黑盒漏洞扫描' ,max: 20, value: 12, variant: 'info' },
+				{ header: 'App漏洞扫描' ,max: 25, value: 16, variant: 'warning' },
+				{ header: '扫描器1' ,max: 20, value: 15, variant: 'danger' },
+			],
+			scanTeams: [
+				{ scaner: '开源库漏洞扫描' , teams: [] },
+				{ scaner: '白盒扫描CheckMarx' , teams: [
+					{ group: '开发一部', name: '人事服务平台', version: 'v2.3', time: '3小时10分钟前' },
+					{ group: '开发六部', name: '信用卡中心', version: 'v2.3', time: '2小时前' },
+					{ group: '开发三部', name: '移动催收管理系统', version: 'v3.0', time: '1小时前' },
+					{ group: '开发二部', name: '手机银行信用卡专版', version: 'v1.3', time: '51分钟前' },
+				] },
+				{ scaner: '黑盒漏洞扫描' , teams: [] },
+				{ scaner: 'App漏洞扫描' , teams: [] },
+				{ scaner: '扫描器1' , teams: []},
 			]
+		}
+	},
+	computed: {
+		scanTeamsClone() {
+			return this.scanTeams;
+		}
+	},
+	methods: {
+		cutLine(index, teamIndex) {
+			const team = this.scanTeamsClone[index].teams[teamIndex];
+			this.scanTeamsClone[index].teams.splice(teamIndex, 1);
+			this.scanTeamsClone[index].teams.unshift(team);
 		}
 	}
 }
 </script>
 
-<style>
-
+<style lang='less'>
+.scan-overview {
+	.scan-task-table {
+		td {
+			width: 20%;
+		}
+	}
+}
 </style>

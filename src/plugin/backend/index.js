@@ -89,17 +89,6 @@ export default function install(Vue) {
 			fileNow(projectId) {
 				return axios.get(`/ntu/filenow/${projectId}`).then(transformData);
 			},
-			// upload(projectId, downloadLink, fileModified, fileSize, fileName, formData) {
-			// 	return axios.get(`/ntu/upload/${projectId}`, {
-			// 		headers: {
-			// 			downloadlink: downloadLink,
-			// 			filemodified: fileModified,
-			// 			filesize: fileSize,
-			// 			filename: fileName,
-			// 			formdata: formData
-			// 		}
-			// 	}).then(transformData);
-			// },
 			upload: {
 				message(projectId, downloadLink, fileModified, fileSize, fileName) {
 					return axios.post(`/ntu/upload/${projectId}`, {

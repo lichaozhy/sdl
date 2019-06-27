@@ -10,7 +10,6 @@
         <b-dropdown-item href="#/desktop/project">总览</b-dropdown-item>
         <b-dropdown-item href="#/desktop/project/all">全部列表</b-dropdown-item>
         <b-dropdown-item href="#/desktop/project/vulnerability">漏洞分析&amp;报告</b-dropdown-item>
-        <b-dropdown-item href="#/desktop/project/scanoverview">扫描任务概览</b-dropdown-item>
       </b-nav-item-dropdown>
       <b-nav-item href="#/desktop/project"></b-nav-item>
       <b-nav-item href="#/desktop/about">关于</b-nav-item>
@@ -44,6 +43,9 @@
         <b-dropdown-item
           href="#/desktop/admin/overview"
         >数据概览</b-dropdown-item>
+        <b-dropdown-item 
+          href="#/desktop/project/scanoverview"
+        >扫描任务概览</b-dropdown-item>
         <b-dropdown-item
           v-if="isAdministrator"
           href="#/desktop/admin/overview"
