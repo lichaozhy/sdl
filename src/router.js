@@ -18,6 +18,11 @@ import PageDesktopProjectVersion from './component/page/desktop/project/Version'
 import ScanOverview from './component/page/desktop/project/ScanOverview';
 
 import PageDesktopOverview from './component/page/desktop/admin/Overview';
+import GroupVulRank from './component/page/desktop/admin/charts/GroupVulRank';
+import BatchVulRank from './component/page/desktop/admin/charts/BatchVulRank';
+import VulRepairDuration from './component/page/desktop/admin/charts/VulRepairDuration';
+import VulAppearTimes from './component/page/desktop/admin/charts/VulAppearTimes';
+import ProjectVulRank from './component/page/desktop/admin/charts/ProjectVulRank';
 
 import NtuScanOverview from './component/page/desktop/tool/NtuScanOverview';
 
@@ -85,6 +90,41 @@ export default new VueRouter({
 				{
 					path: 'admin/overview',
 					component: PageDesktopOverview,
+					meta: {
+						administratorRequired: true
+					}
+				},
+				{
+					path: 'admin/overview/groupvulrank',
+					component: GroupVulRank,
+					meta: {
+						administratorRequired: true
+					}
+				},
+				{
+					path: 'admin/overview/batchvulrank',
+					component: BatchVulRank,
+					meta: {
+						administratorRequired: true
+					}
+				},
+				{
+					path: 'admin/overview/vulrepairduration',
+					component: VulRepairDuration,
+					meta: {
+						administratorRequired: true
+					}
+				},
+				{
+					path: 'admin/overview/vulappeartimes',
+					component: VulAppearTimes,
+					meta: {
+						administratorRequired: true
+					}
+				},
+				{
+					path: 'admin/overview/projectvulrank',
+					component: ProjectVulRank,
 					meta: {
 						administratorRequired: true
 					}

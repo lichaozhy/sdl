@@ -2,7 +2,7 @@
 	<div class="scan-overview">
 		<b-breadcrumb
 			:items="[
-				{ text: '我的项目', href: '#/desktop/project' },
+				{ text: '管理', active: true },
 				{ text: '扫描任务概览', active: true }
 			]"
 		/>

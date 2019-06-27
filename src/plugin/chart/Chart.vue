@@ -6,6 +6,11 @@
 
 <script>
 import Highcharts from 'highcharts/highstock';
+import HighchartsMore from 'highcharts/highcharts-more';
+import TreeMap from 'highcharts/modules/treemap';
+
+HighchartsMore(Highcharts);
+TreeMap(Highcharts);
 
 export default {
   name: 'chart-pie',

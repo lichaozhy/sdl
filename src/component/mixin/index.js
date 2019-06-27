@@ -8,7 +8,7 @@ const minix = {
 				return '-------------';
 			}
 
-			return dateFormat(time, 'yyyy/mm/dd HH:mm:ss');
+			return dateFormat(time, 'yyyy/mm/dd');
 		},
 		ago(time) {
 			if (!time) {
