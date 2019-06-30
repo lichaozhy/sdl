@@ -20,7 +20,7 @@
 			striped
 			overflow:hidden
 			id="admin-overview-table"
-			:items="bocData"
+			:items="renderData"
 			:per-page="perPage"
       :current-page="currentPage"
 			class="text-center mt-4 overview-table"
@@ -34,10 +34,223 @@
 				{ key: 'status', label: '修复情况' },
 				{ key: 'batch', label: '批次' },
 				{ key: 'developer', label: '开发' },
-				{ key: 'averageRepairTime', label: '平均修复时间' },
+				{ key: 'repairTime', label: '平均修复时间' },
 				{ key: 'show_details', label: '' },
 			]"
 		>
+			<template slot="HEAD_general">
+				<b-dropdown 
+					size="sm"
+					text="总属" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="general.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(general)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="general.selected"
+							:options="general.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+			
+			<template slot="HEAD_branch">
+				<b-dropdown 
+					size="sm"
+					text="分属" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="branch.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(branch)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="branch.selected"
+							:options="branch.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_projectName">
+				<b-dropdown 
+					size="sm"
+					text="项目名称" 
+					variant="link"
+				>
+					<b-form-group 
+						class="overview-table-filter"
+					>
+						<b-form-checkbox
+							v-model="projectName.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(projectName)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="projectName.selected"
+							:options="projectName.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_projectGroup">
+				<b-dropdown 
+					size="sm"
+					text="项目组" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="projectGroup.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(projectGroup)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="projectGroup.selected"
+							:options="projectGroup.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_vulnerabilityName">
+				<b-dropdown 
+					size="sm"
+					text="漏洞名称" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="vulnerabilityName.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(vulnerabilityName)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="vulnerabilityName.selected"
+							:options="vulnerabilityName.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_level">
+				<b-dropdown 
+					size="sm"
+					text="危害级别" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="level.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(level)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="level.selected"
+							:options="level.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_status">
+				<b-dropdown 
+					size="sm"
+					text="修复情况" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="status.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(status)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="status.selected"
+							:options="status.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_batch">
+				<b-dropdown 
+					size="sm"
+					text="批次" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="batch.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(batch)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="batch.selected"
+							:options="batch.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_developer">
+				<b-dropdown 
+					size="sm"
+					text="开发" 
+					variant="link"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="developer.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(developer)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group
+							stacked
+							v-model="developer.selected"
+							:options="developer.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+
+			<template slot="HEAD_repairTime">
+				<b-dropdown 
+					size="sm"
+					text="平均修复时间" 
+					variant="link"
+					style="float: right"
+				>
+					<b-form-group class="overview-table-filter">
+						<b-form-checkbox
+							v-model="repairTime.allSelected"
+							style="margin-top:5px;"
+							@change="toggleAll(repairTime)"
+						>全选</b-form-checkbox>
+						<b-form-checkbox-group 
+							stacked
+							v-model="repairTime.selected"
+							:options="repairTime.list"
+						/>
+					</b-form-group>
+				</b-dropdown>
+			</template>
+			
 			<template slot="show_details" slot-scope="row">
 				<b-button size="sm"
 					@click="row.toggleDetails"
@@ -53,7 +266,7 @@
 			</template>
 			
 			<template
-				slot="averageRepairTime"
+				slot="repairTime"
 				slot-scope="data"
 			>{{ data.item.averageRepairTime }}个工作日</template>
 		</b-table>
@@ -80,13 +293,223 @@ export default {
 			bocData,
 			perPage: 10,
 			currentPage: 1,
+
+			general: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			branch: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			projectName: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			projectGroup: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			vulnerabilityName: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			level: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			status: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			batch: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			developer: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
+			repairTime: {
+				list: [],
+				selected: [],
+				allSelected: true,
+			},
 		}
 	},
 	computed: {
+		renderData() {
+			let clone = this.bocData;
+
+			return clone.filter(ele => {
+				return this.general.selected.includes(ele.general) 
+					&& this.branch.selected.includes(ele.branch)
+					&& this.projectName.selected.includes(ele.projectName)
+					&& this.projectGroup.selected.includes(ele.projectGroup)
+					&& this.vulnerabilityName.selected.includes(ele.vulnerabilityName)
+					&& this.level.selected.includes(ele.level)
+					&& this.status.selected.includes(ele.status)
+					&& this.batch.selected.includes(ele.batch)
+					&& this.developer.selected.includes(ele.developer)
+					&& this.repairTime.selected.includes(ele.averageRepairTime);
+			});
+		},
 		rows() {
 			return this.bocData.length;
 		}		
 	},
+	mounted() {
+		this.setOptions();
+	},
+	methods: {
+		setOptions() {
+			this.bocData.forEach(ele => {
+
+				if (!(this.general.list.includes(ele.general))) {
+					this.general.list.push(ele.general);
+					this.general.selected = this.general.list;
+				}
+
+				if (!(this.branch.list.includes(ele.branch))) {
+					this.branch.list.push(ele.branch);
+					this.branch.selected = this.branch.list;
+				}
+
+				if (!(this.projectName.list.includes(ele.projectName))) {
+					this.projectName.list.push(ele.projectName);
+					this.projectName.selected = this.projectName.list;
+				}
+
+				if (!(this.projectGroup.list.includes(ele.projectGroup))) {
+					this.projectGroup.list.push(ele.projectGroup);
+					this.projectGroup.selected = this.projectGroup.list;
+				}
+
+				if (!(this.vulnerabilityName.list.includes(ele.vulnerabilityName))) {
+					this.vulnerabilityName.list.push(ele.vulnerabilityName);
+					this.vulnerabilityName.selected = this.vulnerabilityName.list;
+				}
+
+				if (!(this.level.list.includes(ele.level))) {
+					this.level.list.push(ele.level);
+					this.level.selected = this.level.list;
+				}
+
+				if (!(this.status.list.includes(ele.status))) {
+					this.status.list.push(ele.status);
+					this.status.selected = this.status.list;
+				}
+
+				if (!(this.batch.list.includes(ele.batch))) {
+					this.batch.list.push(ele.batch);
+					this.batch.selected = this.batch.list;
+				}
+
+				if (!(this.developer.list.includes(ele.developer))) {
+					this.developer.list.push(ele.developer);
+					this.developer.selected = this.developer.list;
+				}
+
+				if (!(this.repairTime.list.includes(ele.averageRepairTime))) {
+					this.repairTime.list.push(ele.averageRepairTime);
+					this.repairTime.selected = this.repairTime.list;
+				}
+			});
+			this.repairTime.list.sort((a, b) => a - b);
+			this.repairTime.list = this.repairTime.list.map(ele => {
+				return {
+					text: ele + '个工作日',
+					value: ele
+				}
+			})
+			this.batch.list.sort((a, b) => a - b);
+		},
+		toggleAll(option) {
+			option.allSelected = !option.allSelected;
+			option.selected = option.allSelected ? option.list.slice() : [];
+		}
+	},
+	watch: {
+		'general.selected'(newVal, oldVal) {
+			if (newVal.length === this.general.list.length) {
+				this.general.allSelected = true;
+			} else {
+				this.general.allSelected = false;
+			}
+		},
+		'branch.selected'(newVal, oldVal) {
+			if (newVal.length === this.branch.list.length) {
+				this.branch.allSelected = true;
+			} else {
+				this.branch.allSelected = false;
+			}
+		},
+		'projectName.selected'(newVal, oldVal) {
+			if (newVal.length === this.projectName.list.length) {
+				this.projectName.allSelected = true;
+			} else {
+				this.projectName.allSelected = false;
+			}
+		},
+		'projectGroup.selected'(newVal, oldVal) {
+			if (newVal.length === this.projectGroup.list.length) {
+				this.projectGroup.allSelected = true;
+			} else {
+				this.projectGroup.allSelected = false;
+			}
+		},
+		'vulnerabilityName.selected'(newVal, oldVal) {
+			if (newVal.length === this.vulnerabilityName.list.length) {
+				this.vulnerabilityName.allSelected = true;
+			} else {
+				this.vulnerabilityName.allSelected = false;
+			}
+		},
+		'level.selected'(newVal, oldVal) {
+			if (newVal.length === this.level.list.length) {
+				this.level.allSelected = true;
+			} else {
+				this.level.allSelected = false;
+			}
+		},
+		'status.selected'(newVal, oldVal) {
+			if (newVal.length === this.status.list.length) {
+				this.status.allSelected = true;
+			} else {
+				this.status.allSelected = false;
+			}
+		},
+		'batch.selected'(newVal, oldVal) {
+			if (newVal.length === this.batch.list.length) {
+				this.batch.allSelected = true;
+			} else {
+				this.batch.allSelected = false;
+			}
+		},
+		'developer.selected'(newVal, oldVal) {
+			if (newVal.length === this.developer.list.length) {
+				this.developer.allSelected = true;
+			} else {
+				this.developer.allSelected = false;
+			}
+		},
+		'repairTime.selected'(newVal, oldVal) {
+			if (newVal.length === this.repairTime.list.length) {
+				this.repairTime.allSelected = true;
+			} else {
+				this.repairTime.allSelected = false;
+			}
+		},
+	}
 }
 </script>
 
@@ -95,36 +518,52 @@ export default {
 	.overview-table {
 		// table-layout:fixed;
 
-		td {
-			width: 10%;
-			// word-break:keep-all;
-			// white-space:nowrap;
-			// overflow:hidden;
-			// text-overflow:ellipsis;
+		// td:nth-child(1) {
+		// 	width: 6%;
+		// }
+		td:nth-child(2) {
+			width: 9%;
 		}
-		td:nth-child(1) {
-			width: 6%;
+		// td:nth-child(3) {
+		// 	width: 7%;
+		// }
+		// td:nth-child(4) {
+		// 	width: 7%;
+		// }
+		td:nth-child(5) {
+			width: 15%;
 		}
-		td:nth-child(4) {
-			width: 7%;
-		}
-		td:nth-child(6) {
-			width: 7%;
-		}
-		td:nth-child(7) {
-			width: 7%;
-		}
-		td:nth-child(8) {
-			width: 4%;
-		}
-		td:nth-child(9) {
-			width: 5%;
-		}
-		td:nth-child(10) {
+		// td:nth-child(6) {
+		// 	width: 7%;
+		// }
+		// td:nth-child(7) {
+		// 	width: 7%;
+		// }
+		// td:nth-child(8) {
+		// 	width: 10%;
+		// }
+		// td:nth-child(9) {
+		// 	width: 5%;
+		// }
+		// td:nth-child(10) {
+		// 	width: 7%;
+		// }
+		td:nth-child(11) {
 			width: 8%;
 		}
-		td:nth-child(11) {
-			width: 7%;
+
+		.dropdown-menu {
+			padding: 0;
+		}
+
+		.overview-table-filter {
+			max-height:500px;
+			max-width: 200px;
+			white-space:nowrap;
+			overflow-y:scroll;
+			overflow-x:scroll;
+			padding-left:10px;
+			margin-bottom: 0;
 		}
 	}
 }
