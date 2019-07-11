@@ -41,7 +41,6 @@
 			>
 				<b-table
 					bordered
-					small
 					striped
 					class="text-center mt-4"
 					:items="team.teams"
@@ -73,11 +72,11 @@ export default {
 	data() {
 		return {
 			projectComplyOverview: [
-				{ header: '开源库漏洞扫描' ,max: 20, value: 15, variant: 'primary' },
+				{ header: '开源库漏洞扫描' ,max: 20, value: 10, variant: 'primary' },
 				{ header: '白盒扫描CheckMarx' ,max: 10, value: 10, variant: 'success' },
-				{ header: '黑盒漏洞扫描' ,max: 20, value: 12, variant: 'info' },
-				{ header: 'App漏洞扫描' ,max: 25, value: 16, variant: 'warning' },
-				{ header: '扫描器1' ,max: 20, value: 15, variant: 'danger' },
+				{ header: '黑盒漏洞扫描' ,max: 10, value: 5, variant: 'info' },
+				{ header: 'App漏洞扫描' ,max: 15, value: 5, variant: 'warning' },
+				{ header: '扫描器1' ,max: 10, value: 5, variant: 'danger' },
 			],
 			scanTeams: [
 				{ scaner: '开源库漏洞扫描' , teams: [] },

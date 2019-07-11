@@ -71,7 +71,7 @@
 					:key="index"
 					size="md"
 					variant="primary"
-					href="#/desktop/project/1"
+					:href="`#/desktop/project/${index + 1}`"
 					class="m-2"
 				>{{name}}</b-button>
 			</b-card-text>
@@ -205,7 +205,7 @@ export default {
 				}
 			},
 			watching: [
-				'手机银行', '新版个人网银', '云盘系统', '直销银行手机银行'
+				'手机银行', '移动催收系统', '信用卡中心', '金融租赁', '信用卡中心-支付网关', '金融租赁邮箱系统', '人事服务平台'
 			],
 			projectComplyOverview: [
 				{ header: '安全需求分析' ,max: 50, value: 15, variant: 'success' },

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "手机银行",
+    "owner": "罗惠",
+    "svn": "svn://192.168.136.33/svn/app-bank",
+    "member": [0, 1]
+  },
+  {
+    "name": "移动催收系统",
+    "owner": "罗惠",
+    "svn": "svn://192.168.136.33/svn/app-collection",
+    "member": [0, 2]
+  },
+  {
+    "name": "信用卡中心",
+    "owner": "罗惠",
+    "svn": "svn://192.168.136.33/svn/credit-card-center",
+    "member": [0, 3]
+  },
+  {
+    "name": "金融租赁",
+    "owner": "张三",
+    "svn": "svn://192.168.136.33/svn/finance-lease",
+    "member": [4, 1, 2]
+  },
+  {
+    "name": "信用卡中心-支付网关",
+    "owner": "罗惠",
+    "svn": "svn://192.168.136.33/svn/payment-gateway",
+    "member": [0, 4]
+  },
+  {
+    "name": "金融租赁邮箱系统",
+    "owner": "李四",
+    "svn": "svn://192.168.136.33/svn/finance-lease-email",
+    "member": [5, 2]
+  },
+  {
+    "name": "人事服务平台",
+    "owner": "陈六",
+    "svn": "svn://192.168.136.33/svn/hr",
+    "member": [6, 4]
+  }
+]

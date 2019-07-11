@@ -29,13 +29,17 @@
 
 		<b-table
 			bordered
-			small
 			striped
 			class="text-center mt-4 scan-task-table"
 			:items="[
-				{ group: '开发三部', ing: '14', done: '10', fail: '2', total: '26'},
-				{ group: '开发一部', ing: '11', done: '4', fail: '1', total: '16'},
-				{ group: '开发六部', ing: '10', done: '1', fail: '2', total: '13'},
+				{ group: '软开中心', ing: '10', done: '5', fail: '2', total: '17'},
+				{ group: '开发一部', ing: '8', done: '3', fail: '1', total: '12'},
+				{ group: '开发六部', ing: '6', done: '2', fail: '1', total: '9'},
+				{ group: '开发三部', ing: '3', done: '2', fail: '0', total: '5'},
+				{ group: '开发四部', ing: '3', done: '1', fail: '0', total: '4'},
+				{ group: '开发二部', ing: '2', done: '1', fail: '1', total: '4'},
+				{ group: '开发八部', ing: '2', done: '1', fail: '0', total: '3'},
+				{ group: '开发十部', ing: '1', done: '0', fail: '0', total: '1'},
 			]"
 			:fields="[
 				{ key: 'group', label: '项目组' },

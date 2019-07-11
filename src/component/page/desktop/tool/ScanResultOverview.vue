@@ -10,7 +10,7 @@
 
 	<h3>扫描结果概览</h3>
 
-	<b-tabs 
+	<!-- <b-tabs 
 		content-class="mt-3" 
 		justified
 	>
@@ -18,11 +18,10 @@
 			v-for="(team, index) in scanTeams"
 			:key="index"
 			:title="team.scaner"
-		>	
+		>	 -->
 			<b-table
 				small
 				bordered
-				v-if="index === 0"
 				:fields="[
 					{ key: 'id', label: '扫描编号' },
 					{ key: 'project', label: '所属项目' },
@@ -99,8 +98,8 @@
 					>查看</b-button>
 				</template>
 			</b-table>
-		</b-tab>
-	</b-tabs>
+		<!-- </b-tab>
+	</b-tabs> -->
 
 </div>
 
