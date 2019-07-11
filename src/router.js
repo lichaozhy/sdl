@@ -15,16 +15,18 @@ import PageDesktopProjectVulnerability from './component/page/desktop/project/Vu
 import PageDesktopProjectDetail from './component/page/desktop/project/Detail';
 import PageDesktopProjectTeam from './component/page/desktop/project/Team';
 import PageDesktopProjectVersion from './component/page/desktop/project/Version';
-import ScanOverview from './component/page/desktop/project/ScanOverview';
 
-import PageDesktopOverview from './component/page/desktop/admin/Overview';
-import GroupVulRank from './component/page/desktop/admin/charts/GroupVulRank';
-import BatchVulRank from './component/page/desktop/admin/charts/BatchVulRank';
-import VulRepairDuration from './component/page/desktop/admin/charts/VulRepairDuration';
-import VulAppearTimes from './component/page/desktop/admin/charts/VulAppearTimes';
-import ProjectVulRank from './component/page/desktop/admin/charts/ProjectVulRank';
+import PageDesktopOverview from './component/page/desktop/vulnerability/Overview';
+import GroupVulRank from './component/page/desktop/vulnerability/charts/GroupVulRank';
+import BatchVulRank from './component/page/desktop/vulnerability/charts/BatchVulRank';
+import VulRepairDuration from './component/page/desktop/vulnerability/charts/VulRepairDuration';
+import VulAppearTimes from './component/page/desktop/vulnerability/charts/VulAppearTimes';
+import ProjectVulRank from './component/page/desktop/vulnerability/charts/ProjectVulRank';
 
-import NtuScanOverview from './component/page/desktop/tool/NtuScanOverview';
+import ScanTaskOverview from './component/page/desktop/tool/ScanTaskOverview';
+import ExecuteOverview from './component/page/desktop/tool/ExecuteOverview';
+import ScanResultOverview from './component/page/desktop/tool/ScanResultOverview';
+import ToolSetting from './component/page/desktop/tool/Setting';
 
 export default new VueRouter({
 	routes: [
@@ -72,10 +74,6 @@ export default new VueRouter({
 					component: PageDesktopProjectVulnerability
 				},
 				{
-					path: 'project/scanoverview',
-					component: ScanOverview
-				},
-				{
 					path: 'project/:hash',
 					component: PageDesktopProjectDetail
 				},
@@ -86,48 +84,6 @@ export default new VueRouter({
 				{
 					path: 'project/:hash/version/:semver',
 					component: PageDesktopProjectVersion
-				},
-				{
-					path: 'admin/overview',
-					component: PageDesktopOverview,
-					meta: {
-						administratorRequired: true
-					}
-				},
-				{
-					path: 'admin/overview/groupvulrank',
-					component: GroupVulRank,
-					meta: {
-						administratorRequired: true
-					}
-				},
-				{
-					path: 'admin/overview/batchvulrank',
-					component: BatchVulRank,
-					meta: {
-						administratorRequired: true
-					}
-				},
-				{
-					path: 'admin/overview/vulrepairduration',
-					component: VulRepairDuration,
-					meta: {
-						administratorRequired: true
-					}
-				},
-				{
-					path: 'admin/overview/vulappeartimes',
-					component: VulAppearTimes,
-					meta: {
-						administratorRequired: true
-					}
-				},
-				{
-					path: 'admin/overview/projectvulrank',
-					component: ProjectVulRank,
-					meta: {
-						administratorRequired: true
-					}
 				},
 				{
 					path: 'admin/service',
@@ -148,8 +104,62 @@ export default new VueRouter({
 					}
 				},
 				{
-					path: 'tool/ntu',
-					component: NtuScanOverview
+					path: 'vulnerability/overview',
+					component: PageDesktopOverview,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/groupvulrank',
+					component: GroupVulRank,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/batchvulrank',
+					component: BatchVulRank,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/vulrepairduration',
+					component: VulRepairDuration,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/vulappeartimes',
+					component: VulAppearTimes,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/projectvulrank',
+					component: ProjectVulRank,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'tool/scantask',
+					component: ScanTaskOverview
+				},
+				{
+					path: 'tool/execute',
+					component: ExecuteOverview
+				},
+				{
+					path: 'tool/result',
+					component: ScanResultOverview
+				},
+				{
+					path: 'tool/setting',
+					component: ToolSetting
 				}
 			]
 		}

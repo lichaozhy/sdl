@@ -3,7 +3,7 @@
 <div>
 	<b-breadcrumb
 		:items="[
-			{ text: '我的项目', active: true }
+			{ text: '总览', active: true }
 		]"
 	/>
 	<h3 class="mt-3">项目概览</h3>
@@ -87,7 +87,6 @@
 			:key="index"
 			no-body
 		>
-			<!-- <b-link slot="header" to="">{{ item.header }}</b-link> -->
 			<div slot="header" to="">{{ item.header }}</div>
 			<b-progress 
 				:max="item.max" 
@@ -149,7 +148,7 @@
       <div slot="header">等级分布</div>
     </b-card>
   </b-card-group>
-	<b-button variant="link" href="#/desktop/project/vulnerability">查看漏洞分析&amp;报告</b-button>
+	<!-- <b-button variant="link" href="#/desktop/project/vulnerability">查看漏洞分析&amp;报告</b-button> -->
 	
 	<h3 class="mt-3">阶段分布</h3>
 	<b-card-group>

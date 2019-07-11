@@ -3,8 +3,7 @@
 <div>
 	<b-breadcrumb
 		:items="[
-			{ text: '我的项目', href: '#/desktop/overview' },
-			{ text: '全部列表', active: true }
+			{ text: '我的项目', active: true }
 		]"
 	/>
 	<h3>我是负责人</h3>

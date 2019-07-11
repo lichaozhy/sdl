@@ -5,36 +5,29 @@
 		<b-navbar-brand href="#/">SDLC安全开发管控平台</b-navbar-brand>
 
 		<b-navbar-nav>
-			<b-nav-item-dropdown>
-				<template slot="button-content">我的项目</template>
-				<b-dropdown-item href="#/desktop/project">总览</b-dropdown-item>
-				<b-dropdown-item href="#/desktop/project/all">全部列表</b-dropdown-item>
-				<b-dropdown-item href="#/desktop/project/vulnerability">漏洞分析&amp;报告</b-dropdown-item>
+			<b-nav-item href="#/desktop/project">总览</b-nav-item>
+			<b-nav-item href="#/desktop/project/all" class="ml-2">我的项目</b-nav-item>
+			<!-- <b-nav-item href="#/desktop/project/vulnerability">漏洞分析&amp;报告</b-nav-item> -->
+			<b-nav-item-dropdown class="ml-2">
+				<template slot="button-content">漏洞</template>
+				<b-dropdown-item href="#/desktop/vulnerability/overview">漏洞详情列表</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/projectvulrank">项目漏洞排名</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/groupvulrank">项目组漏洞排名</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/batchvulrank">批次漏洞排名</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/vulappeartimes">漏洞出现频率</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/vulrepairduration">漏洞修复时长</b-dropdown-item>
 			</b-nav-item-dropdown>
-			<b-nav-item href="#/desktop/project"></b-nav-item>
-			<b-nav-item href="#/desktop/about">关于</b-nav-item>
+			<b-nav-item-dropdown class="ml-2">
+				<template slot="button-content">工具</template>
+				<b-dropdown-item href="#/desktop/tool/scantask">扫描任务概览</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/tool/execute">项目执行概览</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/tool/result">扫描结果</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/tool/setting">配置</b-dropdown-item>
+			</b-nav-item-dropdown>
 		</b-navbar-nav>
 
 		<!-- Right aligned nav items -->
 		<b-navbar-nav class="ml-auto">
-			<b-nav-item-dropdown
-				right 
-				v-if="isAdministrator"
-			>
-				<template slot="button-content">其他工具</template>
-				<b-dropdown-item
-					href="#/desktop/tool/ntu"
-				>开源漏洞扫描</b-dropdown-item>
-				<b-dropdown-item
-					v-if="isAdministrator"
-					href=""
-				>工具2</b-dropdown-item>
-				<b-dropdown-item
-					v-if="isAdministrator"
-					href=""
-				>工具3</b-dropdown-item>
-			</b-nav-item-dropdown>
-
 			<b-nav-item-dropdown
 				right 
 				v-if="isAdministrator"
