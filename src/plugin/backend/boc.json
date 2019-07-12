@@ -31,7 +31,7 @@
     "developer": "刘七",
     "vulnerabilityRetestTime": "2019-03-01T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-03-01T16:00:00.000Z",
-    "averageRepairTime": "6"
+    "averageRepairTime": "3"
   },
   {
     "general": "总行",
@@ -65,7 +65,7 @@
     "developer": "赵八",
     "vulnerabilityRetestTime": "2019-04-21T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-04-21T16:00:00.000Z",
-    "averageRepairTime": "4"
+    "averageRepairTime": "5"
   },
   {
     "general": "事业部",
@@ -1017,7 +1017,7 @@
     "developer": "王五",
     "vulnerabilityRetestTime": "2018-11-27T16:00:00.000Z",
     "vulnerabilityRepairTime": "2018-11-27T16:00:00.000Z",
-    "averageRepairTime": "2"
+    "averageRepairTime": "3"
   },
   {
     "general": "事业部",
@@ -1136,7 +1136,7 @@
     "developer": "韩十",
     "vulnerabilityRetestTime": "2019-01-05T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-01-05T16:00:00.000Z",
-    "averageRepairTime": "4"
+    "averageRepairTime": "6"
   },
   {
     "general": "分行",
@@ -1187,7 +1187,7 @@
     "developer": "刘七",
     "vulnerabilityRetestTime": "2018-09-17T16:00:00.000Z",
     "vulnerabilityRepairTime": "2018-09-17T16:00:00.000Z",
-    "averageRepairTime": "4"
+    "averageRepairTime": "6"
   },
   {
     "general": "分行",
@@ -1289,7 +1289,7 @@
     "developer": "孙九",
     "vulnerabilityRetestTime": "2019-06-21T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-06-21T16:00:00.000Z",
-    "averageRepairTime": "4"
+    "averageRepairTime": "3"
   },
   {
     "general": "分行",
@@ -1357,7 +1357,7 @@
     "developer": "王五",
     "vulnerabilityRetestTime": "2019-11-07T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-11-07T16:00:00.000Z",
-    "averageRepairTime": "5"
+    "averageRepairTime": "1"
   },
   {
     "general": "分行",
@@ -1493,7 +1493,7 @@
     "developer": "赵八",
     "vulnerabilityRetestTime": "2017-12-23T16:00:00.000Z",
     "vulnerabilityRepairTime": "2017-12-23T16:00:00.000Z",
-    "averageRepairTime": "2"
+    "averageRepairTime": "7"
   },
   {
     "general": "分行",
@@ -1544,7 +1544,7 @@
     "developer": "孙九",
     "vulnerabilityRetestTime": "2018-12-23T16:00:00.000Z",
     "vulnerabilityRepairTime": "2018-12-23T16:00:00.000Z",
-    "averageRepairTime": "2"
+    "averageRepairTime": "8"
   },
   {
     "general": "分行",
@@ -1663,7 +1663,7 @@
     "developer": "刘七",
     "vulnerabilityRetestTime": "2019-03-03T16:00:00.000Z",
     "vulnerabilityRepairTime": "2019-03-03T16:00:00.000Z",
-    "averageRepairTime": "6"
+    "averageRepairTime": "1"
   },
   {
     "general": "总行",
@@ -1680,6 +1680,6 @@
     "developer": "张三",
     "vulnerabilityRetestTime": "2017-09-01T16:00:00.000Z",
     "vulnerabilityRepairTime": "2017-09-01T16:00:00.000Z",
-    "averageRepairTime": "2"
+    "averageRepairTime": "3"
   }
 ]

@@ -27,9 +27,9 @@ export default {
 		initChart() {
 			this.chart = new Highcharts.Chart(this.$el, Object.assign({}, this.options, {
 				colors: [
-					'#dc3545', '#ffc107', '#17a2b8', '#DDDF00',
-					'#24CBE5', '#64E572', '#FF9655', '#FFF263',
-					'#6AF9C4', '#4949C5', '#12FF00'
+					'#CF5863', '#FF704B', '#FFA96D', '#F7DD6F',
+					'#AAE7B0', '#84E1E5', '#E4D5F6', '#8BCBEA',
+					'#F6A4EB', '#8FEFFB', '#AFF1B6'
 				]
 			}));
 		}
