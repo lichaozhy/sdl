@@ -24,7 +24,7 @@ module.exports = merge(webpackBase, {
 		proxy: {
 			'/api': 'http://127.0.0.1:8080',
 			'/ntu': 'http://127.0.0.1:4000',
-			'/v1/upload/': 'http://52.82.100.75:8000'
+			'/v1/upload/': 'http://39.100.239.154:8000'
 		}
 	},
 	plugins: [

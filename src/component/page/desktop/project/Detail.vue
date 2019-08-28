@@ -91,12 +91,12 @@
 					bordered
 					class="w-auto mb-0"
 					:fields="[
-					{ key: 'requirement', label: '需求分析阶段' },
-					{ key: 'design', label: '设计阶段' },
-					{ key: 'development', label: '开发阶段' },
-					{ key: 'testing', label: '测试阶段' },
-					{ key: 'acceptance', label: '运行&监控阶段' },
-				]"
+						{ key: 'requirement', label: '需求分析阶段' },
+						{ key: 'design', label: '设计阶段' },
+						{ key: 'development', label: '开发阶段' },
+						{ key: 'testing', label: '测试阶段' },
+						{ key: 'acceptance', label: '运行&监控阶段' },
+					]"
 				>
 					<template slot="bottom-row">
 						<td v-for="(stage, index) in stageList" :key="index">
@@ -179,16 +179,32 @@
 				style="top:0;left:0"
 			>还原</b-button>
 		</div>
+
+		<!-- <b-row>
+			<b-col cols="6">
+				<stage-track-wrap
+					:traceData="traceData"
+					:stageList="wrapStageList"
+					:stageMapping="stageMapping"
+					:active.sync="traceActive"
+					:traceChanger.sync="traceChanger"
+				></stage-track-wrap>
+			</b-col>
+			<b-col cols="6">
+				<stage-track-tree
+					:traceData="traceData"
+					:stageMapping="stageMapping"
+					:active.sync="traceActive"
+					:traceChanger.sync="traceChanger"
+				></stage-track-tree>
+			</b-col>
+		</b-row> -->
 	</div>
 </template>
 
 <script>
 import attributeData from './attribute.json';
-// function Project() {
-// 	return {
-// 		name: "手机银行"
-// 	};
-// }
+import traceData from './trace.json';
 
 const stageList = [
 	{
@@ -350,7 +366,20 @@ export default {
 			svn: '',
 			isFull: false,
 			stageList: stageList,
-			tagMap
+			tagMap,
+
+			traceData: traceData,
+			wrapStageList: ['requirement', 'design', 'development', 'testing', 'acceptance'],
+			stageMapping: {
+				'requirement': '需求分析阶段',
+				'design': '设计阶段',
+				'development': '开发阶段',
+				'testing': '测试阶段',
+				'acceptance': '运行&监控阶段',
+			},
+			traceActive: '1',
+			traceChanger: '',
+			tabsValue: null
 		};
 	},
 	computed: {
