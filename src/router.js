@@ -28,6 +28,10 @@ import ExecuteOverview from './component/page/desktop/tool/ExecuteOverview';
 import ScanResultOverview from './component/page/desktop/tool/ScanResultOverview';
 import ToolSetting from './component/page/desktop/tool/Setting';
 
+import Trend from './component/page/desktop/trend/Trend';
+import Compare from './component/page/desktop/trend/Compare';
+import Statistic from './component/page/desktop/trend/Statistic';
+
 export default new VueRouter({
 	routes: [
 		{
@@ -160,7 +164,19 @@ export default new VueRouter({
 				{
 					path: 'tool/setting',
 					component: ToolSetting
-				}
+				},
+				{
+					path: 'situation/trend',
+					component: Trend
+				},
+				{
+					path: 'situation/statistic',
+					component: Statistic
+				},
+				{
+					path: 'situation/compare',
+					component: Compare
+				},
 			]
 		}
 	],
