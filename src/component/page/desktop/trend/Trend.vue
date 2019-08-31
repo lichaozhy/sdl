@@ -117,7 +117,7 @@ export default {
 						}]
 					}, {
 						colors: ['#F6A4EB', '#8BCBEA', '#FFA96D'],
-						title: '漏洞数变化趋势分析',
+						title: '产品漏洞数变化趋势分析',
 						yTitle: '数量',
 						categories: ['2019/4', '2019/5', '2019/6'],
 						series: [{
@@ -126,6 +126,39 @@ export default {
 						}, {
 							name: '项目2',
 							data: [80, 50, 0]
+						}]
+					},{
+						colors: ['#CF5863', '#FF704B', '#FFA96D'],
+						title: '部门漏洞数变化趋势分析',
+						yTitle: '数量',
+						categories: ['2019/4', '2019/5', '2019/6'],
+						series: [{
+							name: '开发1部',
+							data: [60, 30, 0]
+						}, {
+							name: '开发2部',
+							data: [70, 45, 0]
+						}, {
+							name: '开发3部',
+							data: [50, 35, 0]
+						}]
+					},{
+						colors: ['#F6A4EB', '#8BCBEA', '#FFA96D'],
+						title: '批次漏洞数变化趋势分析',
+						yTitle: '数量',
+						categories: ['2019/4', '2019/5', '2019/6'],
+						series: [{
+							name: '批次30',
+							data: [45, 30, 0]
+						}, {
+							name: '批次31',
+							data: [40, 25, 0]
+						}, {
+							name: '批次32',
+							data: [30, 20, 0]
+						}, {
+							name: '批次33',
+							data: [25, 20, 0]
 						}]
 					}, {
 						colors: ['#CF5863', '#FF704B', '#FFA96D'],

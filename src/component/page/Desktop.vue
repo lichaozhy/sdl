@@ -10,7 +10,7 @@
 
 			<b-nav-item-dropdown class="ml-2">
 				<template slot="button-content">漏洞</template>
-				<b-dropdown-item href="#/desktop/vulnerability/overview">漏洞详情列表</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/overview">漏洞列表</b-dropdown-item>
 				<b-dropdown-item href="#/desktop/vulnerability/projectvulrank">项目漏洞排名</b-dropdown-item>
 				<b-dropdown-item href="#/desktop/vulnerability/groupvulrank">项目组漏洞排名</b-dropdown-item>
 				<b-dropdown-item href="#/desktop/vulnerability/batchvulrank">批次漏洞排名</b-dropdown-item>
