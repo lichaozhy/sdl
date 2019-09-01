@@ -16,6 +16,7 @@
 				<b-dropdown-item href="#/desktop/vulnerability/batchvulrank">批次漏洞排名</b-dropdown-item>
 				<b-dropdown-item href="#/desktop/vulnerability/vulappeartimes">漏洞出现频率</b-dropdown-item>
 				<b-dropdown-item href="#/desktop/vulnerability/vulrepairduration">漏洞修复时长</b-dropdown-item>
+				<b-dropdown-item href="#/desktop/vulnerability/sourcerfc">评估分值参考</b-dropdown-item>
 			</b-nav-item-dropdown>
 
 			<b-nav-item-dropdown class="ml-2">

@@ -18,6 +18,7 @@ import PageDesktopProjectVersion from './component/page/desktop/project/Version'
 
 import PageDesktopOverview from './component/page/desktop/vulnerability/Overview';
 import PageDesktopVulDetail from './component/page/desktop/vulnerability/Detail';
+import SoureRFC from './component/page/desktop/vulnerability/sourceReference';
 import GroupVulRank from './component/page/desktop/vulnerability/charts/GroupVulRank';
 import BatchVulRank from './component/page/desktop/vulnerability/charts/BatchVulRank';
 import VulRepairDuration from './component/page/desktop/vulnerability/charts/VulRepairDuration';
@@ -118,6 +119,13 @@ export default new VueRouter({
 				{
 					path: 'vulnerability/detail/:vulId',
 					component: PageDesktopVulDetail,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/sourcerfc',
+					component: SoureRFC,
 					// meta: {
 					// 	administratorRequired: true
 					// }
