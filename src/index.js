@@ -9,6 +9,7 @@ import backend from './plugin/backend';
 import visualization from './plugin/visualization';
 import chart from './plugin/chart';
 import stageTrack from './plugin/visualization/StageTrack';
+import date from './plugin/date';
 
 import mixin from './component/mixin/index';
 
@@ -17,6 +18,7 @@ Vue.use(backend);
 Vue.use(visualization);
 Vue.use(chart);
 Vue.use(stageTrack);
+Vue.use(date);
 
 Vue.mixin(mixin);
 
