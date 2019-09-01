@@ -17,6 +17,7 @@ import PageDesktopProjectTeam from './component/page/desktop/project/Team';
 import PageDesktopProjectVersion from './component/page/desktop/project/Version';
 
 import PageDesktopOverview from './component/page/desktop/vulnerability/Overview';
+import PageDesktopVulDetail from './component/page/desktop/vulnerability/Detail';
 import GroupVulRank from './component/page/desktop/vulnerability/charts/GroupVulRank';
 import BatchVulRank from './component/page/desktop/vulnerability/charts/BatchVulRank';
 import VulRepairDuration from './component/page/desktop/vulnerability/charts/VulRepairDuration';
@@ -110,6 +111,13 @@ export default new VueRouter({
 				{
 					path: 'vulnerability/overview',
 					component: PageDesktopOverview,
+					// meta: {
+					// 	administratorRequired: true
+					// }
+				},
+				{
+					path: 'vulnerability/detail/:vulId',
+					component: PageDesktopVulDetail,
 					// meta: {
 					// 	administratorRequired: true
 					// }
